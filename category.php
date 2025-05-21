@@ -22,7 +22,9 @@ if (!empty($_GET["categoryId"])) {
     }
 
     // Fetch category name
-    $sql = "SELECT CategoryName FROM category WHERE CategoryId = :categoryId";
+    $sql = <<<SQL
+    SELECT CategoryName FROM category WHERE CategoryId = :categoryId
+    SQL;
     $stmt = $db->prepareStatement($sql);
     $stmt->bindValue(":categoryId", $categoryId, PDO::PARAM_INT);
     $category = $db->executeSQL($stmt);
