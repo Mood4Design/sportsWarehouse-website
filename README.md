@@ -52,7 +52,7 @@ The `styles` directory contains the `styles_improved.css` file, which provides t
 
 ```mermaid
 graph LR
-    
+     subgraph Website
         index.php --> templates/_indexPage.html.php
         home.php --> templates/_indexPage.html.php
         category.php --> templates/_products.html.php
