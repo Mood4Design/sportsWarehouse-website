@@ -16,7 +16,7 @@
                  ?>
                     <div class="product">
                         <a href="product.php?id=<?= $item['itemId'] ?>" class="product__link">
-                            <img src="<?= $photoPath ?>" alt="<?= esc($item['photo']) ?>">
+                            <img src="<?= $photoPath ?>" alt="<?= urlencode($item['photo']) ?>">
                             <p class="current-price">
                                 <!-- If salePrice is greater than 0, display both the sale price and the original price. -->
                                 <?php if ($item['salePrice'] > 0): ?>
