@@ -71,8 +71,3 @@ graph LR
     end
     subgraph Database
         classes/DBAccess.php --> DB
-<<<<<<< HEAD
-    end
-=======
-    end
->>>>>>> efe18b00726f6324bf7259fd1651557f60b2be06
