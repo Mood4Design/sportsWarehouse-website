@@ -11,8 +11,8 @@
 
   <dl class="about-list">
     <?php foreach ($about as $aboutName => $aboutDesc): ?>
-      <dt><?= $aboutName ?></dt>
-      <dd><?= $aboutDesc ?></dd>
+      <dt><?= esc($aboutName) ?></dt>
+      <dd><?= esc($aboutDesc) ?></dd>
     <?php endforeach ?>
   </dl>
 </section>

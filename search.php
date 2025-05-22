@@ -17,18 +17,18 @@ if (isset($_GET["search"])) {
 
     // Search for items matching the query
     $sql = <<<SQL
-    SELECT ItemId, ItemName, Price, SalePrice, Description, Img, Photo, category.CategoryName
+    SELECT itemId, itemName, price, salePrice, description, photo, category.categoryName
             FROM item
-            INNER JOIN category ON item.CategoryId = category.CategoryId
-            WHERE ItemName LIKE :search OR category.CategoryName LIKE :search
+            INNER JOIN category ON item.categoryId = category.categoryId
+            WHERE itemName LIKE :search OR category.categoryName LIKE :search
     SQL;
     // Prepare the statement
     $stmt = $db->prepareStatement($sql);
 
     /* 
         Alternative SQL query using a different syntax
-        INNER JOIN category ON item.CategoryId = category.CategoryId
-        WHERE ItemName LIKE :itemName OR category.CategoryName LIKE :categoryName
+        INNER JOIN category ON item.categoryId = category.categoryId
+        WHERE itemName LIKE :itemName OR category.categoryName LIKE :categoryName
         $stmt = $db->prepareStatement($sql);
         Bind values (if needed)
         $stmt->bindValue(":itemName", "%$search%", PDO::PARAM_STR);

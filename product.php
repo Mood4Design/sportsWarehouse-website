@@ -19,10 +19,10 @@
 
     // Search for item by ID
     $sql = <<<SQL
-        SELECT  ItemId, ItemName, Price, SalePrice, Description, Img, Photo, category.CategoryName
+        SELECT  itemId, itemName, price, salePrice, description, photo, category.categoryName
         FROM item
-        INNER JOIN category ON item.CategoryId = category.CategoryId
-        WHERE ItemId = :itemId
+        INNER JOIN category ON item.categoryId = category.categoryId
+        WHERE itemId = :itemId
     SQL;
 
     // Prepare the statement

@@ -16,9 +16,9 @@
   // Define SQL query
   // LIMIT 0, 6 means: skip 0 rows (0 offset), only return 6 rows (count)
   $sql = <<<SQL
-    SELECT	ItemId, ItemName, CategoryId, Price, SalePrice, Description, Img, Photo
+    SELECT	itemId, itemName, categoryId, price, salePrice, description, photo
     FROM	  item
-    WHERE   Price < 20
+    WHERE   price < 20
     LIMIT   0, 6
   SQL;
 
@@ -37,9 +37,9 @@
 
   // Define SQL query
   $sql = <<<SQL
-    SELECT	ItemId, ItemName, CategoryId, Price, SalePrice, Description, Img, Photo
+    SELECT	itemId, itemName, categoryId, price, salePrice, description, photo
     FROM	  item
-    WHERE   Price >= 0
+    WHERE   price >= 0
     LIMIT   0, 6
   SQL;
 

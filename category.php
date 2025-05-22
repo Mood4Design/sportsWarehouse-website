@@ -23,7 +23,7 @@ if (!empty($_GET["categoryId"])) {
 
     // Fetch category name
     $sql = <<<SQL
-    SELECT CategoryName FROM category WHERE CategoryId = :categoryId
+    SELECT categoryName FROM category WHERE categoryId = :categoryId
     SQL;
     $stmt = $db->prepareStatement($sql);
     $stmt->bindValue(":categoryId", $categoryId, PDO::PARAM_INT);
@@ -37,9 +37,9 @@ if (!empty($_GET["categoryId"])) {
 
     // Fetch items for the selected category
     $sql = <<<SQL
-    SELECT ItemId, ItemName, Price, SalePrice, Img, Photo 
-                 FROM item 
-                 WHERE CategoryId = :categoryId
+    SELECT itemId, itemName, price, salePrice, photo
+    FROM item
+    WHERE categoryId = :categoryId
     SQL;
     $stmt = $db->prepareStatement($sql);
     $stmt->bindValue(":categoryId", $categoryId, PDO::PARAM_INT);
