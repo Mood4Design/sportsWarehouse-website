@@ -17,7 +17,7 @@ This document provides an overview of the website's architecture.
 
 ## Routing
 
-The website likely uses direct mapping of URLs to PHP files, as there is no `.htaccess` file.
+The website  uses direct mapping of URLs to PHP files, as there is no `.htaccess` file.
 
 ## Includes
 
