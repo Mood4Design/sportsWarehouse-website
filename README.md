@@ -1,15 +1,11 @@
 # Sports Warehouse Website for PHP Learning
-
 This website is an interactive learning platform designed to help me master PHP programming through structured instructional materials. It offers hands-on experience with key web development principles, database integration, and dynamic content creation.
 
 ## Stealing this code
 
 Much of the code is borrowed from TAFE teacher Michael to fully implement this assessment!"
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 0c427d71eec9ef251590a6209e3dd0d6f7ae2d20
 # Website Architecture Overview
 
 This document provides an overview of the website's architecture.
@@ -22,11 +18,7 @@ This document provides an overview of the website's architecture.
 
 ## Routing
 
-<<<<<<< HEAD
 The website likely uses direct mapping of URLs to PHP files, as there is no `.htaccess` file.
-=======
-The website  uses direct mapping of URLs to PHP files, as there is no `.htaccess` file.
->>>>>>> 0c427d71eec9ef251590a6209e3dd0d6f7ae2d20
 
 ## Includes
 
@@ -79,8 +71,4 @@ graph LR
     end
     subgraph Database
         classes/DBAccess.php --> DB
-<<<<<<< HEAD
     end
-=======
-    end
->>>>>>> 0c427d71eec9ef251590a6209e3dd0d6f7ae2d20
