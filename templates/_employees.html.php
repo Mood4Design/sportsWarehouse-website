@@ -11,11 +11,11 @@
       <?php
 
         // Extract data
-        $firstName = $employee["FirstName"];
-        $lastName = $employee["LastName"];
+        $firstName = $employee["firstName"];
+        $lastName = $employee["lastName"];
         $fullName = "$firstName $lastName";
-        $position = $employee["Title"];
-        $photoFilename = $employee["PhotoPath"];
+        $position = $employee["title"];
+        $photoFilename = $employee["photoPath"];
 
         // Set default image (photo)
         $imgSrc = "unavailable.png";
