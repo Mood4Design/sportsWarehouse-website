@@ -14,6 +14,7 @@ class Item
   private float $_price;
   private string $_description;
   private DBAccess $_db;
+  private int $_categoryId;
 
   #endregion
 
@@ -97,6 +98,42 @@ class Item
     $this->_price = $price;
   }
 
+  /**
+   * Get item description
+   *
+   * @return string The item description
+   */
+  public function getDescription(): string
+  {
+    // Return value of private property
+    return $this->_description;
+  }
+    
+  /**
+   * Set description
+   *
+   * @param  string $description The new description
+   * @return void
+   */
+  public function setDescription(string $description): void
+  {
+    // Store new value in the private property
+    $this->_description = $description;
+  }
+  
+
+  /**
+   * Set category ID
+   *
+   * @param  int $categoryId The new category ID
+   * @return void
+   */
+  public function setCategoryId(int $categoryId): void
+  {
+    $this->_categoryId = $categoryId;
+  }
+
+
   #endregion
 
   #region Methods
@@ -157,8 +194,8 @@ class Item
 
       // Define SQL query, prepare statement, bind parameters
       $sql = <<<SQL
-        SELECT  ProductID, ProductName, UnitPrice
-        FROM    Products
+        SELECT  itemID, itemName, price, description
+        FROM    item
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
 
@@ -199,6 +236,104 @@ class Item
     }
   }
     
+  /**
+   * Add a item using values in object's properties
+   *
+   * @return integer The ID of the new item
+   */
+  public function insertItem(): int
+  {
+    try {
+
+      // NODO: Add validation to make sure data is OK before inserting into database
+      
+      // Open the database connection
+      $this->_db->connect();
+
+      // Define query, prepare statement, bind parameters
+      $sql = <<<SQL
+        INSERT INTO item (itemName, price, description, categoryId)
+        VALUES (:itemName, :price, :description, :categoryId)
+      SQL;
+      $stmt = $this->_db->prepareStatement($sql);
+      $stmt->bindValue(":itemName", $this->_itemName, PDO::PARAM_STR);
+      $stmt->bindValue(":price", $this->_price, PDO::PARAM_STR);
+      $stmt->bindValue(":description", $this->_description, PDO::PARAM_STR);
+      $stmt->bindValue(":categoryId", $this->_categoryId, PDO::PARAM_INT);
+
+      // Execute query and return new ID
+      // true means return the new ID (primary key value)
+      return $this->_db->executeNonQuery($stmt, true);
+
+    } catch (Exception $ex) {
+      throw $ex;
+    }
+  }
+
+  /**
+   * Update a item using values in object's properties
+   *
+   * @param integer $id The current ID of the item to update
+   * @return bool True if update successful
+   */
+  public function updateItem(int $id): bool
+  {
+    try {
+
+      // NODO: Add validation to make sure data is OK before updating the database
+      
+      // Open the database connection
+      $this->_db->connect();
+
+      // Define query, prepare statement, bind parameters
+      $sql = <<<SQL
+        UPDATE 	item
+        SET 	  itemName = :itemName, price = :price, description = :description
+        WHERE 	itemID = :itemID
+      SQL;
+      $stmt = $this->_db->prepareStatement($sql);
+      $stmt->bindValue(":itemID", $id, PDO::PARAM_INT);
+      $stmt->bindValue(":itemName", $this->_itemName, PDO::PARAM_STR);
+      $stmt->bindValue(":price", $this->_price, PDO::PARAM_STR);
+      $stmt->bindValue(":description", $this->_description, PDO::PARAM_STR);
+
+      // Execute query and return success value (true/false)
+      return $this->_db->executeNonQuery($stmt);
+
+    } catch (Exception $ex) {
+      throw $ex;
+    }
+  }
+
+  /**
+   * Delete a item by ID
+   *
+   * @param integer $id The ID of the item to delete
+   * @return bool True if delete successful
+   */
+  public function deleteItem(int $id): bool
+  {
+    try {
+      
+      // Open the database connection
+      $this->_db->connect();
+
+      // Define query, prepare statement, bind parameters
+      $sql = <<<SQL
+        DELETE
+        FROM 	  item
+        WHERE 	itemID = :itemID
+      SQL;
+      $stmt = $this->_db->prepareStatement($sql);
+      $stmt->bindValue(":itemID", $id, PDO::PARAM_INT);
+
+      // Execute query and return success value (true/false)
+      return $this->_db->executeNonQuery($stmt);
+
+    } catch (Exception $ex) {
+      throw $ex;
+    }
+  }
   #endregion
 
 }

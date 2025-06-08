@@ -11,7 +11,7 @@ class CartItem
   private string $_itemName;
   private float $_quantity;
   private float $_price;
-  private int $_productId;
+  private int $_itemId;
 
   #endregion
 
@@ -26,12 +26,12 @@ class CartItem
    * @param  int $productId The ID of the product in the database
    * @return void
    */
-  public function __construct(string $itemName, float $quantity, float $price, int $productId)
+  public function __construct(string $itemName, float $quantity, float $price, int $itemId)
   {
     $this->_itemName = $itemName;
     $this->_quantity = $quantity;
     $this->_price = $price;
-    $this->_productId = $productId;
+    $this->_itemId = $itemId;
   }
 
   #endregion
@@ -83,7 +83,7 @@ class CartItem
    */
   public function getItemId(): int
   {
-    return $this->_productId;
+    return $this->_itemId;
   }
 
   /**

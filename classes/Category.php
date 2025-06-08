@@ -95,7 +95,7 @@ class Category
       // Define query, prepare statement, bind parameters
       $sql = <<<SQL
         SELECT  categoryID, categoryName
-        FROM    categories
+        FROM    category
         WHERE   categoryID = :categoryId
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
@@ -137,9 +137,9 @@ class Category
   }
 
   /**
-   * Get all categories
+   * Get all category
    *
-   * @return array The collection of categories
+   * @return array The collection of category
    */
   public function getCategories(): array
   {
@@ -151,7 +151,7 @@ class Category
       // Define query, prepare statement, bind parameters
       $sql = <<<SQL
         SELECT  categoryID, categoryName
-        FROM    categories
+        FROM    category
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
 
@@ -168,9 +168,9 @@ class Category
   }
 
   /**
-   * Get the total number of categories (COUNT)
+   * Get the total number of category (COUNT)
    *
-   * @return int The number of categories
+   * @return int The number of category
    */
   public function getNumberOfCategories(): int
   {
@@ -181,7 +181,7 @@ class Category
       // Define SQL query, prepare statement, bind parameters
       $sql = <<<SQL
         SELECT  COUNT(*)
-        FROM    Categories
+        FROM    category
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
 
@@ -210,7 +210,7 @@ class Category
 
       // Define query, prepare statement, bind parameters
       $sql = <<<SQL
-        INSERT INTO categories (categoryName)
+        INSERT INTO category (categoryName)
         VALUES (:categoryName)
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
@@ -243,7 +243,7 @@ class Category
 
       // Define query, prepare statement, bind parameters
       $sql = <<<SQL
-        UPDATE 	categories
+        UPDATE 	category
         SET 	  categoryName = :categoryName
         WHERE 	categoryID = :categoryID
       SQL;
@@ -274,7 +274,7 @@ class Category
       // Define query, prepare statement, bind parameters
       $sql = <<<SQL
         DELETE
-        FROM 	  categories
+        FROM 	  category
         WHERE 	categoryID = :categoryID
       SQL;
       $stmt = $this->_db->prepareStatement($sql);

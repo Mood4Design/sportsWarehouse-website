@@ -30,7 +30,7 @@ try
 
   // Print category info
   echo <<<HTML
-  <p>Name: {$category->getCategoryName()}, Description: {$category->getDescription()}</p>
+  <p>Name: {$category->getCategoryName()}</p>
   HTML;
 
 
