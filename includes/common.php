@@ -9,7 +9,13 @@
   define("ROOT_DIR", __DIR__ . "/../");
   define("INCLUDES_DIR", ROOT_DIR . "includes/");
   define("TEMPLATES_DIR", ROOT_DIR . "templates/");
+  define("CLASSES_DIR", ROOT_DIR . "classes/");
 
+  // Load class definitions
+  require_once CLASSES_DIR . "Category.php";
+  require_once CLASSES_DIR . "Item.php";
+  require_once CLASSES_DIR . "ShoppingCart.php";
+  require_once CLASSES_DIR . "CartItem.php";
 
   // Load Composer's autoloader (created by Composer, not included with PHPMailer)
   require_once ROOT_DIR . "vendor/autoload.php";
@@ -23,6 +29,16 @@
   // Open the database connection
   $db->connect();
 
+
+  // Start session (if it's not already started)
+  if (!isset($_SESSION)) {
+    session_start();
+  }
+
+  // Get the shopping cart from the session
+  $cart = $_SESSION["cart"] ?? new ShoppingCart();
+
+
   /**
    * Escapes a value for safe usage in HTML. Wrapper for `htmlspecialchars()`.
    *
@@ -32,5 +48,4 @@
   function esc(string|int $valueToEscapeForHtml): string {
     return htmlspecialchars($valueToEscapeForHtml);
   }
-  
   
