@@ -29,3 +29,4 @@
 
   // Create a new DBAccess instance (this is used for ALL database operations!)
   $db = new DBAccess($dbServer, $dbDatabase, $dbUsername, $dbPassword);
+  return $db;

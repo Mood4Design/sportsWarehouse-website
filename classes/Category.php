@@ -22,7 +22,7 @@ class Category
   public function __construct()
   {
     // Create database connection and store into _db property (so other methods can use DBAccess)
-    require INCLUDES_DIR . "database.php";
+    $db = require INCLUDES_DIR . "database.php";
     $this->_db = $db;
   }
 
