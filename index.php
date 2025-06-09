@@ -57,3 +57,4 @@
 
   // Include the main layout template
   include_once "templates/_layout.html.php";
+  
