@@ -41,6 +41,7 @@ try
   // // Create new object, add data, insert into datbase
    $item = new Item();
    $item->setItemName("Added from PHP");
+   $item->setPhoto("photo.jpg");
    $item->setPrice(99.99);
    $item->setDescription("This is a beautiful description from PHP...");
    $item->setCategoryId(1);

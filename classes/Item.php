@@ -15,6 +15,7 @@ class Item
   private string $_description;
   private DBAccess $_db;
   private int $_categoryId;
+  private string $_photo;
 
   #endregion
 
@@ -134,6 +135,17 @@ class Item
   }
 
 
+  /**
+   * Set photo
+   *
+   * @param  string $photo The new photo
+   * @return void
+   */
+  public function setPhoto(string $photo): void
+  {
+    $this->_photo = $photo;
+  }
+
   #endregion
 
   #region Methods
@@ -252,15 +264,16 @@ class Item
 
       // Define query, prepare statement, bind parameters
       $sql = <<<SQL
-        INSERT INTO item (itemName, price, description, categoryId)
-        VALUES (:itemName, :price, :description, :categoryId)
+        INSERT INTO item (itemName, photo, price, description, categoryId)
+        VALUES (:itemName, :photo, :price, :description, :categoryId)
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
       $stmt->bindValue(":itemName", $this->_itemName, PDO::PARAM_STR);
+      $stmt->bindValue(":photo", $this->_photo, PDO::PARAM_STR);
       $stmt->bindValue(":price", $this->_price, PDO::PARAM_STR);
       $stmt->bindValue(":description", $this->_description, PDO::PARAM_STR);
       $stmt->bindValue(":categoryId", $this->_categoryId, PDO::PARAM_INT);
-
+  
       // Execute query and return new ID
       // true means return the new ID (primary key value)
       return $this->_db->executeNonQuery($stmt, true);
