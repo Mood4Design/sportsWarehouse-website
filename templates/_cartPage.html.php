@@ -1,7 +1,7 @@
 <div class="container">
  
     <h3>Shopping cart</h3>
-      <h2>Shopping cart</h2>
+        <!-- <h2>Shopping cart</h2> -->
 
           <?php if ($cart->count() === 0): ?>
 
@@ -15,12 +15,21 @@
                     <th>Price</th>
                     <th>Qty</th>
                   </tr>
+                  
                       <?php foreach ($cart->getItems() as $item): ?>
-                        <tr>
-                          <td><?= $item->getItemName() ?></td>
-                          <td><?= sprintf('$%1.2f', $item->getPrice() ?? "--") ?></td>
-                          <td><?= $item->getQuantity() ?></td>
-                        </tr>
+                            <!-- 
+                            <tr>
+                              <td>Product 1</td>
+                              <td>$123</td>
+                              <td>4</td>
+                            </tr>
+                            -->
+                            <tr>
+                              <td><?= $item->getItemName() ?></td>
+                              <td><?= sprintf('$%1.2f', $item->getPrice() ?? "--") ?></td>
+                              <td><?= $item->getQuantity() ?></td>
+                            </tr>
+                      
                       <?php endforeach ?>
 
                 </table>
