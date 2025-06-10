@@ -16,6 +16,7 @@
   require_once CLASSES_DIR . "Item.php";
   require_once CLASSES_DIR . "ShoppingCart.php";
   require_once CLASSES_DIR . "CartItem.php";
+  require_once CLASSES_DIR . "Auth.php";
 
   // Load Composer's autoloader (created by Composer, not included with PHPMailer)
   require_once ROOT_DIR . "vendor/autoload.php";

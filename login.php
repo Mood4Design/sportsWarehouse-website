@@ -1,7 +1,7 @@
 <?php
-
+   require_once "includes/common.php";
   // References
-  require_once "classes/Auth.php";
+ // require_once "classes/Auth.php";
 
   // Check if user is already logged in, redirect to protected/success page
   if(Auth::isLoggedIn()){

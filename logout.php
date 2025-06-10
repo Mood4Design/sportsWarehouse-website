@@ -1,7 +1,7 @@
 <?php
 
   // References
-  require_once "classes/Auth.php";
+  require_once "includes/common.php";
 
   // LOGOUT user, redirect to login page if not
   Auth::logout();

@@ -1,7 +1,7 @@
 <?php
 
   // References
-  require_once "classes/Auth.php";
+  require_once "includes/common.php";
   // Config
   $title = "Home";
   // Start output buffering (trap output, don't display it yet)
@@ -21,7 +21,7 @@
       $errorMessage = "Username and password are required.";
       
       // Re-display the form with errors
-      include_once "./templates/_createUserPage.html.php";
+      include_once TEMPLATES_DIR . "_createUserPage.html.php";
 
     // Both username & password supplied
     } else {
@@ -38,19 +38,19 @@
         }
 
         // Re-display create user form with messages
-        include_once "./templates/_createUserPage.html.php";
+        include_once TEMPLATES_DIR . "_createUserPage.html.php";
       }
 
 } else {
     // Display create user form
-    include_once "./templates/_createUserPage.html.php";
+    include_once TEMPLATES_DIR . "_createUserPage.html.php";
   }
 
   // Stop output buffering - store output into our $output variable
   $output = ob_get_clean();
 
   // Include layout template
-  include_once "./templates/_layoutAdmin.html.php";
+  include_once TEMPLATES_DIR . "_layoutAdmin.html.php";
 
   /**
    * Set an HTML-safe value of a form field from $_POST data.

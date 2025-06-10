@@ -10,7 +10,7 @@
 <body>
   <div class="site-wrapper">
     <header class="site-header">
-      <h1 class="site-title"><a href="index.php">Auth class testing</a></h1>
+      <h1 class="site-title"><a href="indexAdmin.php">Auth class testing</a></h1>
     </header>
     <main class="main-content">
 
