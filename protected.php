@@ -1,7 +1,7 @@
 <?php
 
-  // Require necessary files
-  require_once "classes/Auth.php";
+  // References
+  require_once "includes/common.php";
 
   // Protect this page against unauthorised access(non-logged-in users)
   // Users will be redirected if they do NoT have valid data in the PHP session

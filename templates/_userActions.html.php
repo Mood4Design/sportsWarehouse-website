@@ -1,8 +1,9 @@
 <?php
   // User action items
   $userActionLinks = [
-    "login.php" => "<i class='fas fa-lock'></i> Login",
+    "" => "<i class='fas fa-lock'></i> Login",
     "cart.php" => "<i class='fas fa-shopping-cart'></i> Cart",
+    "indexAdmin.php" => "<i class='fas fa-user-shield'></i> Admin",
     "items.php" => "<span class='item-count'></span> Items",
   ];
 
