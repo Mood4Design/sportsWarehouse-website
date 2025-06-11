@@ -13,7 +13,7 @@
             <p>This is where you could add links to pages that ONLY authorised (logged-in) users should   have access to. This would commonly be an administrator menu to allow managing content.
             </p>
 
-            <ul>
+            <ul class="container">
                 <li><a href="#">Manage something</li>
                 <li><a href="#">Access secret knowledge</a></li>
                 <li><a href="login.php">Login</a> (should be redirected back here because you're already logged in)</li>

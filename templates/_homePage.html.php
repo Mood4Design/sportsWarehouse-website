@@ -9,7 +9,7 @@
 
           <p>Once logged in, the user's details are stored in a PHP session, which is checked when they are trying to access a page protected with <code>Auth::protect()</code>.</p>
 
-            <ul style="margin-left: 20px;">
+            <ul class="container">
                 <li><a href="createUser.php">Create user</a> (do NOT have this accessible on a production website!)</li>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="logout.php">Logout</a></li>

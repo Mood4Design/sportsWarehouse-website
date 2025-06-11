@@ -1,3 +1,4 @@
+<div class="container">
 <h2>Create new user</h2>
 
 <p>Create a new user in the database - password will be stored as a hash (not plaintext).</p>
@@ -24,3 +25,4 @@
     </div>
   </fieldset>
 </form>
+</div>
