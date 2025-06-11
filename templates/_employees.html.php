@@ -30,7 +30,7 @@
 
       ?>
 
-      <li class="employee">
+      <li class="employee" style="display: block;">
         <img src="photos/<?= urlencode($imgSrc) ?>" alt="Photo of The Person" class="employee__photo">
         <h3 class="employee__name"><?= esc($fullName) ?></h3>
         <p class="employee__title"><?= esc($position) ?></p>

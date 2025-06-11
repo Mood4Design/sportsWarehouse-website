@@ -13,7 +13,6 @@
   $sql = <<<SQL
     SELECT    employeeID, lastName, firstName, title, photoPath
     FROM      employees
-    WHERE     isActive = 1
     ORDER BY  lastName ASC
   SQL;
 
