@@ -4,8 +4,9 @@
   require_once INCLUDES_DIR . "formHelpers.php";
 
 ?>
+<div class="container">
 
-<h2>Add new staff member</h2>
+<h3>Add new staff member</h3>
 
 <p>Hired someone new? Add them here!</p>
 
@@ -83,3 +84,4 @@
     </div>
   </fieldset>
 </form>
+</div>
