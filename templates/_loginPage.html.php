@@ -1,24 +1,28 @@
-<h2>Login</h2>
 
-<p>Logging in will give you access to the <a href="protected.php">protected.php</a> page with super-secret content!</p>
+<div class="container">
 
-<?php include "_error.html.php" ?>
-<?php include "_success.html.php" ?>
+        <h3>Login page</h3>
 
-<form action="login.php" method="post" novalidate>
-  <fieldset>
-    <div class="form-row">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" value="<?= setValue("username") ?>" required>
-    </div>
+            <p>Logging in will give you access to the <a href="protected.php">protected.php</a> page with super-secret content!</p>
 
-    <div class="form-row">
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" value="<?= setValue("password") ?>" required>
-    </div>
+                <?php include "_error.html.php" ?>
+                <?php include "_success.html.php" ?>
 
-    <div class="form-row">
-      <button type="submit" name="submitLogin">Login</button>
-    </div>
-  </fieldset>
-</form>
+                  <form action="login.php" method="post" novalidate>
+                        <fieldset>
+                              <div class="form-row">
+                                      <label for="username">Username:</label>
+                                      <input type="text" name="username" id="username" value="<?= setValue("username") ?>" required>
+                              </div>
+
+                              <div class="form-row">
+                                    <label for="password">Password:</label>
+                                    <input type="password" name="password" id="password" value="<?= setValue("password") ?>" required>
+                              </div>
+
+                              <div class="form-row">
+                                    <button type="submit" name="submitLogin">Login</button>
+                              </div>
+                        </fieldset>
+                  </form>
+</div>
