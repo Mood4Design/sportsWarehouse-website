@@ -42,7 +42,7 @@
                 <!-- Main Navigation -->
                 <nav class="main-nav">
                     <div class="container">
-                        <?php include TEMPLATES_DIR . "_categoryNav.html.php"; ?>
+                        <?php include TEMPLATES_DIR . "_categoryNavigation.html.php"; ?>
                     </div>
                 </nav>
                 <img src="image/Banner01.png" alt="Soccer Ball Banner">
@@ -82,7 +82,7 @@
             </div>
             <div class="footer-section product-categories">
                 <h2>Product categories</h2>
-                     <?php include TEMPLATES_DIR . "_categoryNav.html.php"; ?>
+                     <?php include TEMPLATES_DIR . "_categoryNavigation.html.php"; ?>
             </div>
             <div class="footer-section contact-info">
                 <h2>Contact Sports Warehouse</h2>

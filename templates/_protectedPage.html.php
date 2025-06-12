@@ -15,6 +15,7 @@
 
             <ul class="container">
                 <li><a href="#">Manage something</li>
+                <li><a href="addCategory.php">Add Category</a></li>
                 <li><a href="#">Access secret knowledge</a></li>
                 <li><a href="login.php">Login</a> (should be redirected back here because you're already logged in)</li>
                 <li><a href="logout.php">Logout</a></li>

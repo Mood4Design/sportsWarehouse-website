@@ -1,7 +1,7 @@
 <?php if (empty($items)): ?>
     <div class="featured-products">
         <div class="container">
-            <h3>Error</h3>
+            <h1>Error</h1>
             <h2>No products found</h2>
         </div>
     </div>
@@ -9,7 +9,7 @@
     <!-- Featured Products -->
     <div class="featured-products">
         <div class="container">
-            <h3>Featured products</h3>
+            
             <div class="product-grid">
                 <?php foreach ($items as $item): 
                     $photoPath = "image/" . $item["photo"];
@@ -27,7 +27,11 @@
                                     <span class="old-price"><?= sprintf('$%1.2f', esc($item['price'])) ?></span>
                                 <?php endif; ?>
                             </p>
-                            <p class="info"><?= esc($item['itemName']) ?></p>
+                                <p class="info"><?= esc($item['itemName']) ?></p>
+
+                                <?php if(!empty($item["categoryName"])): ?>
+                                    <p class="product__category">Category: <?= $item["categoryName"] ?></p>
+                                <?php endif; ?>
                         </a>
                     </div>
                 <?php endforeach; ?>

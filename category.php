@@ -1,68 +1,79 @@
 <?php
-// Common includes for main PHP pages (controllers)
-require_once "includes/common.php";
 
-// Config
-$title = "Category Items";
+  // Common includes for main PHP pages (controllers)
+  require_once "includes/common.php";
 
-// Start output buffering (trap output - don't display it yet)
-ob_start();
+  // Config
+  $title = "Products by category";
 
-// Check if categoryId has been given
-if (!empty($_GET["categoryId"])) {
+  // Start output buffering (trap output - don't display it yet)
+  ob_start();
 
-    // Get the CategoryId (and sanitize/validate it)
-    $categoryId = intval($_GET["categoryId"]);
 
-    // Redirect if categoryId is zero or negative (invalid)
-    if ($categoryId <= 0) {
-        $errorMessage = "Invalid Category ID.";
-        include TEMPLATES_DIR . "_error.html.php";
-        exit;
-    }
+  // Check if category ID has been given
+  if (!empty($_GET["id"])) {
 
-    // Fetch category name
+    // Get the ID (and sanitise/validate it)
+    $categoryId = intval($_GET["id"]);
+
+    // TODO: Redirect if category ID is zero (invalid)
+
+    // Search for category by ID (get its name)
     $sql = <<<SQL
-    SELECT categoryName FROM category WHERE categoryId = :categoryId
+      SELECT  categoryName
+      FROM    category
+      WHERE   categoryID = :categoryId
     SQL;
+
+    // Prepare the statement
     $stmt = $db->prepareStatement($sql);
+
+    // Bind values (if needed)
     $stmt->bindValue(":categoryId", $categoryId, PDO::PARAM_INT);
-    $category = $db->executeSQL($stmt);
 
-    if (empty($category)) {
-        $errorMessage = "Category doesn't exist.";
-        include TEMPLATES_DIR . "_error.html.php";
-        exit;
-    }
+    // Get category name from database
+    $categoryName = $db->executeSQLReturnOneValue($stmt);
 
-    // Fetch items for the selected category
-    $sql = <<<SQL
-    SELECT itemId, itemName, price, salePrice, photo
-    FROM item
-    WHERE categoryId = :categoryId
-    SQL;
-    $stmt = $db->prepareStatement($sql);
-    $stmt->bindValue(":categoryId", $categoryId, PDO::PARAM_INT);
-    $items = $db->executeSQL($stmt);
+    // Check if category does NOT exist
+    if ($categoryName === false) {
 
-    // Check if any items were found
-    if (empty($items)) {
-        $errorMessage = "No items found in this category.";
-        include TEMPLATES_DIR . "_error.html.php";
+      // Display error
+      $errorMessage = "Category doesn't exist.";
+      include TEMPLATES_DIR . "_error.html.php";
+
     } else {
-        // Pass the items to the template
-        include TEMPLATES_DIR . "_products.html.php";
+      
+      // Load the category's products
+      $sql = <<<SQL
+        SELECT itemId, itemName, price, salePrice, photo
+        FROM item
+        WHERE categoryId = :categoryId
+        SQL;
+
+      // Prepare the statement
+      $stmt = $db->prepareStatement($sql);
+
+      // Bind values (if needed)
+      $stmt->bindValue(":categoryId", $categoryId, PDO::PARAM_INT);
+
+      // Get the list of products (for display in template)
+      $items = $db->executeSQL($stmt);
+
+      // Include the page-specific template
+      include_once TEMPLATES_DIR . "_categoryPage.html.php";
+
     }
 
-} else {
+  } else {
 
-    // No categoryId given - display error
-    $errorMessage = "Invalid Category ID: 'categoryId' parameter missing.";
+    // No category ID given - display error
+    $errorMessage = "Invalid category ID: 'id' parameter missing.";
     include TEMPLATES_DIR . "_error.html.php";
-}
 
-// Stop output buffering - store output into the $content variable
-$content = ob_get_clean();
+  }
 
-// Include the main layout template
-include_once TEMPLATES_DIR . "_layout.html.php";
+  // Stop output buffering - store output into the $content variable
+  $content = ob_get_clean();
+
+  // Include the main layout template
+  include_once TEMPLATES_DIR . "_layout.html.php";
