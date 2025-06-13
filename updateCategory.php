@@ -13,7 +13,7 @@ require_once "includes/common.php";
   ob_start();
 
   // Check if form has been submitted
-  if (isset($_POST["submitAddCategory"])) {
+  if (isset($_POST["submitUpdateCategory"])) {
 
 
     try
@@ -24,13 +24,13 @@ require_once "includes/common.php";
       */
 
       // // Create new object, add data, insert into datbase
-      $category = new Category();
-      $category->setCategoryName($_POST["categoryName"]);
-      $newCategoryId = $category->insertCategory();
+      //$category = new Category();
+      //$category->setCategoryName($_POST["categoryName"]);
+      //$newCategoryId = $category->insertCategory();
       
       // Display success message
-      $successMessage = "Category added successfully, new ID: $newCategoryId";
-      include_once TEMPLATES_DIR . "_success.html.php";
+      //$successMessage = "Category added successfully, new ID: $newCategoryId";
+      //include_once TEMPLATES_DIR . "_success.html.php";
 
       
       /* 
@@ -38,22 +38,19 @@ require_once "includes/common.php";
       */
 
       // // Get category from database, change its data, update in the datbase
-      // $categoryIdToUpdate = 11;
-      // $category = new Category();
-      // $category->getCategory($categoryIdToUpdate);
-      // // $category->setCategoryName("Edited in PHP");
-      // $category->setDescription("This is an updated description from PHP...");
-      // $updateSuccess = $category->updateCategory($categoryIdToUpdate);
+       $categoryIdToUpdate = $_POST["categoryId"];
+       $category = new Category();
+       $category->getCategory($categoryIdToUpdate);
+       $category->setCategoryName($_POST["categoryName"]);
+       $updateSuccess = $category->updateCategory($categoryIdToUpdate);
 
-      // if ($updateSuccess) {
-      //   echo <<<HTML
-      //   <p>✔ Category updated successfully: {$categoryIdToUpdate}</p>
-      //   HTML;
-      // } else {
-      //   echo <<<HTML
-      //   <p>☠ Category update failed: {$categoryIdToUpdate}</p>
-      //   HTML;
-      // }
+       if ($updateSuccess) {
+          $successMessage = "Category updated successfully, ID: $categoryIdToUpdate";
+          include_once TEMPLATES_DIR . "_success.html.php";
+       } else {
+          $errorMessage = "Category update failed, ID: $categoryIdToUpdate";
+          include_once TEMPLATES_DIR . "_error.html.php";
+       }
 
 
       /* 
@@ -85,7 +82,7 @@ require_once "includes/common.php";
 
 } else {
   // Display the form to add a new category
-  include "templates/_addCategoryPage.html.php";
+  include "templates/_updateCategoryPage.html.php";
 }
 
   // Stop output buffering - store output into the $content variable

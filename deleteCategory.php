@@ -13,7 +13,7 @@ require_once "includes/common.php";
   ob_start();
 
   // Check if form has been submitted
-  if (isset($_POST["submitAddCategory"])) {
+  if (isset($_POST["submitDeleteCategory"])) {
 
 
     try
@@ -24,13 +24,13 @@ require_once "includes/common.php";
       */
 
       // // Create new object, add data, insert into datbase
-      $category = new Category();
-      $category->setCategoryName($_POST["categoryName"]);
-      $newCategoryId = $category->insertCategory();
+      //$category = new Category();
+      //$category->setCategoryName($_POST["categoryName"]);
+      //$newCategoryId = $category->insertCategory();
       
       // Display success message
-      $successMessage = "Category added successfully, new ID: $newCategoryId";
-      include_once TEMPLATES_DIR . "_success.html.php";
+      //$successMessage = "Category added successfully, new ID: $newCategoryId";
+      //include_once TEMPLATES_DIR . "_success.html.php";
 
       
       /* 
@@ -38,7 +38,7 @@ require_once "includes/common.php";
       */
 
       // // Get category from database, change its data, update in the datbase
-      // $categoryIdToUpdate = 11;
+      //// $categoryIdToUpdate = 11;
       // $category = new Category();
       // $category->getCategory($categoryIdToUpdate);
       // // $category->setCategoryName("Edited in PHP");
@@ -61,31 +61,31 @@ require_once "includes/common.php";
       */
 
       // // Get category from database, change its data, update in the datbase
-      // $categoryIdToDelete = 9;
-      // $category = new Category();
-      // $deleteSuccess = $category->deleteCategory($categoryIdToDelete);
+       $categoryIdToDelete = $_POST["categoryId"];
+       $category = new Category();
+       $deleteSuccess = $category->deleteCategory($categoryIdToDelete);
 
-      // if ($deleteSuccess) {
-      //   echo <<<HTML
-      //   <p>✔ Category deleted successfully: {$categoryIdToDelete}</p>
-      //   HTML;
-      // } else {
-      //   echo <<<HTML
-      //   <p>☠ Category delete failed: {$categoryIdToDelete}</p>
-      //   HTML;
-      // }
+
+       if ($deleteSuccess) {
+       
+          $successMessage = "Category deleted successfully, ID: $categoryIdToDelete";
+          include_once TEMPLATES_DIR . "_success.html.php";
+       } else {
+          $errorMessage = "Category delete failed: {$categoryIdToDelete}";
+          include_once TEMPLATES_DIR . "_error.html.php";
+       }
 
     } catch (Exception $ex) {
 
   // "Handle" exception
-  $errorMessage = "Catastrophic error: {$ex->getMessage()}</p>";
-  include_once TEMPLATES_DIR . "_error.html.php";
+  echo "<p>Catastrophic error: {$ex->getMessage()}</p>";
+  
 
 }
 
 } else {
-  // Display the form to add a new category
-  include "templates/_addCategoryPage.html.php";
+  // Display the form to delete a category
+  include "templates/_deleteCategoryPage.html.php";
 }
 
   // Stop output buffering - store output into the $content variable

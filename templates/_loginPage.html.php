@@ -2,11 +2,13 @@
 <div class="container">
 
         <h3>Login page</h3>
+            <p>Welcome to the login page! Please enter your credentials to access the protected content.</p>
 
             <p>Logging in will give you access to the <a href="protected.php">protected.php</a> page with super-secret content!</p>
 
-                <?php include "_error.html.php" ?>
-                <?php include "_success.html.php" ?>
+
+            <?php include "_error.html.php" ?>
+            <?php include "_success.html.php" ?>
 
                   <form action="login.php" method="post" novalidate>
                         <fieldset>
@@ -26,3 +28,4 @@
                         </fieldset>
                   </form>
 </div>
+

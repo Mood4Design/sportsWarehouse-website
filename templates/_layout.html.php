@@ -49,7 +49,7 @@
             </div>
         </div>
         <!-- Featured Products -->
-        <?= $content ?? 'NO CONTENT - $content not defined' ?>
+         <?= $content ?? 'NO CONTENT - $content not defined' ?>
 
         <!-- Brands and Partnerships -->
         <section class="brands-partnerships">

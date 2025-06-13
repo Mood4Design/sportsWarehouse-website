@@ -1,7 +1,7 @@
 <div class="container">
-<h2>Create new user</h2>
+<h3>Create admin user</h3>
 
-<p>Create a new user in the database - password will be stored as a hash (not plaintext).</p>
+<p>Create a new admin user in the database - You need a authorised username and password to login first. The password will be stored as a hash (not plaintext).</p>
 
 <p><strong>NOTE:</strong> do NOT leave this accessible on a production website!</p>
 

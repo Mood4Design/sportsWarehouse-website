@@ -25,11 +25,12 @@
       
             <!-- User Actions -->
             <div class="user-actions">
-                <?php include TEMPLATES_DIR . "_userActions.html.php"; ?>
-                
+                <?php include TEMPLATES_DIR . "_userActionsAdmin.html.php"; ?>
+
             </div>
         </div>
     </header>
+
     <main>
         <!-- Slideshow -->
         <div class="slideshow">
@@ -42,14 +43,16 @@
                 <!-- Main Navigation -->
                 <nav class="main-nav">
                     <div class="container">
-                        <?php include TEMPLATES_DIR . "_categoryNav.html.php"; ?>
+                        <?php include TEMPLATES_DIR . "_categoryNavigation.html.php"; ?>
                     </div>
                 </nav>
                 <img src="image/Banner01.png" alt="Soccer Ball Banner">
             </div>
         </div>
+
         <!-- Featured Products -->
-       <?= $output ?? 'NO TEMPLATE CONTENT - $output not defined' ?>
+        <?= $content ?? 'NO CONTENT - $content not defined' ?>
+
         <!-- Brands and Partnerships -->
         <section class="brands-partnerships">
             <div class="container">
@@ -81,7 +84,7 @@
             </div>
             <div class="footer-section product-categories">
                 <h2>Product categories</h2>
-                     <?php include TEMPLATES_DIR . "_categoryNav.html.php"; ?>
+                     <?php include TEMPLATES_DIR . "_categoryNavigation.html.php"; ?>
             </div>
             <div class="footer-section contact-info">
                 <h2>Contact Sports Warehouse</h2>

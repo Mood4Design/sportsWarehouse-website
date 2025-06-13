@@ -16,8 +16,8 @@
   // Include the page-specific template
   include_once "./templates/_protectedPage.html.php";
 
-  // Stop output buffering - store output into our $output variable
-  $output = ob_get_clean();
+  // Stop output buffering - store output into our $content variable
+  $content = ob_get_clean();
 
   // Include layout template
-  include_once "./templates/_layoutAdmin.html.php";
+  include_once "./templates/_layout.html.php";

@@ -3,6 +3,8 @@
   // Common includes for main PHP pages (controllers)
   require_once "includes/common.php";
 
+  Auth::protect();
+
   // Config
   $title = "Add staff member";
 

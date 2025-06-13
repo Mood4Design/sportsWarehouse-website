@@ -2,6 +2,8 @@
 
   // References
   require_once "includes/common.php";
+
+   Auth::protect();
   // Config
   $title = "Home";
   // Start output buffering (trap output, don't display it yet)
@@ -46,8 +48,8 @@
     include_once TEMPLATES_DIR . "_createUserPage.html.php";
   }
 
-  // Stop output buffering - store output into our $output variable
-  $output = ob_get_clean();
+  // Stop output buffering - store output into our $content variable
+  $content = ob_get_clean();
 
   // Include layout template
   include_once TEMPLATES_DIR . "_layoutAdmin.html.php";

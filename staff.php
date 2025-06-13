@@ -29,4 +29,4 @@
   $content = ob_get_clean();
 
   // Include the main layout template
-  include_once "templates/_layout.html.php";
+  include_once "templates/_layoutAdmin.html.php";
