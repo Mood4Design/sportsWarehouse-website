@@ -30,7 +30,7 @@ try
      */
 
     // File upload settings
-    $targetDirectory = ROOT_DIR . "image/";
+    $targetDirectory = ROOT_DIR . "photos/";
     $fileUploadOptional = false;
 
     // Skip file upload if no file given and upload is optional
