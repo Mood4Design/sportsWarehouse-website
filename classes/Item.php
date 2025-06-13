@@ -12,6 +12,7 @@ class Item
   private int $_itemId;
   private string $_itemName;
   private float $_price;
+  private float $_salePrice;
   private string $_description;
   private DBAccess $_db;
   private int $_categoryId;
@@ -100,6 +101,27 @@ class Item
   }
 
   /**
+   * Get item sale price
+   *
+   * @return float The item sale price
+   */
+  public function getSalePrice(): float
+  {
+    return $this->_salePrice;
+  }
+
+  /**
+   * Set sale price
+   *
+   * @param  float $salePrice The new sale price
+   * @return void
+   */
+  public function setSalePrice(float $salePrice): void
+  {
+    $this->_salePrice = $salePrice;
+  }
+
+  /**
    * Get item description
    *
    * @return string The item description
@@ -134,6 +156,15 @@ class Item
     $this->_categoryId = $categoryId;
   }
 
+  /**
+   * Get photo
+   *
+   * @return string The photo
+   */
+  public function getPhoto(): string
+  {
+    return $this->_photo;
+  }
 
   /**
    * Set photo
@@ -165,7 +196,7 @@ class Item
 
       // Define SQL query, prepare statement, bind parameters
       $sql = <<<SQL
-        SELECT  itemID, itemName, price, description
+        SELECT  itemID, itemName, price, salePrice, description
         FROM    item
         WHERE   itemID = :itemID
       SQL;
@@ -182,8 +213,8 @@ class Item
       $this->_itemId = $row["itemID"];
       $this->_itemName = $row["itemName"];
       $this->_price = $row["price"];
+      $this->_salePrice = $row["salePrice"];
       $this->_description = $row["description"];
-
 
     } catch (PDOException $e) {
       
@@ -264,13 +295,14 @@ class Item
 
       // Define query, prepare statement, bind parameters
       $sql = <<<SQL
-        INSERT INTO item (itemName, photo, price, description, categoryId)
-        VALUES (:itemName, :photo, :price, :description, :categoryId)
+        INSERT INTO item (itemName, photo, price, salePrice, description, categoryId)
+        VALUES (:itemName, :photo, :price, :salePrice, :description, :categoryId)
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
       $stmt->bindValue(":itemName", $this->_itemName, PDO::PARAM_STR);
       $stmt->bindValue(":photo", $this->_photo, PDO::PARAM_STR);
       $stmt->bindValue(":price", $this->_price, PDO::PARAM_STR);
+      $stmt->bindValue(":salePrice", $this->_salePrice, PDO::PARAM_STR);
       $stmt->bindValue(":description", $this->_description, PDO::PARAM_STR);
       $stmt->bindValue(":categoryId", $this->_categoryId, PDO::PARAM_INT);
   
@@ -301,13 +333,14 @@ class Item
       // Define query, prepare statement, bind parameters
       $sql = <<<SQL
         UPDATE 	item
-        SET 	  itemName = :itemName, price = :price, description = :description
+        SET 	  itemName = :itemName, price = :price, salePrice = :salePrice, description = :description
         WHERE 	itemID = :itemID
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
       $stmt->bindValue(":itemID", $id, PDO::PARAM_INT);
       $stmt->bindValue(":itemName", $this->_itemName, PDO::PARAM_STR);
       $stmt->bindValue(":price", $this->_price, PDO::PARAM_STR);
+      $stmt->bindValue(":salePrice", $this->_salePrice, PDO::PARAM_STR);
       $stmt->bindValue(":description", $this->_description, PDO::PARAM_STR);
 
       // Execute query and return success value (true/false)

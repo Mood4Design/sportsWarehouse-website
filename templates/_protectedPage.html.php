@@ -19,7 +19,7 @@
                 <li><a href="addCategory.php">Add Category</a></li>
                 <li><a href="updateCategory.php">Update Category</a></li>
                 <li><a href="deleteCategory.php">Delete Category</a></li>
-                <li><a href="addProduct.php">Add Product</a></li>
+                <li><a href="addItem.php">Add Item</a></li>
                 <li><a href="#">Access secret knowledge</a></li>
                 <li><a href="login.php">Login</a> (should be redirected back here because you're already logged in)</li>
                 <li><a href="logout.php">Logout</a></li>
