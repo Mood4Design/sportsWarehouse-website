@@ -86,42 +86,49 @@ try
    *  Updating a item
    */
 
-  // // Get item from database, change its data, update in the database
+  
+   
+   // Create new object instance (using the constructor)
+    $item = new Item();
+    
+  // Set properties using the data from the form
+  // Get item from database, change its data, update in the database
 
     $itemIdToUpdate = ($_POST["itemId"] ?? 0);
-    $item = new Item();
 
     $item->getItem($itemIdToUpdate);
-    $item->setItemName($_POST["itemName"] ?? "");
+
+    //// If no item name given, keep the old itemName
+    $item->setItemName(!empty($_POST["itemName"]) ? $_POST["itemName"] : $item->getItemName());
+
     // If no file upload, keep the old photo
     if (empty($photo)) {
         $photo = $item->getPhoto();
     }
     $item->setPhoto($photo ?? "");
+
     
-    if (empty($_POST["price"])) {
-        $item->setPrice($item->getPrice());
-    } else {
-        $item->setPrice($_POST["price"]);
-    }
-    if (empty($_POST["salePrice"])) {
-        $item->setSalePrice($item->getSalePrice());
-    } else {
-        $item->setSalePrice($_POST["salePrice"]);
-    }
+    //if (empty($_POST["price"])) {
+    //    $item->setPrice($item->getPrice());
+    // } else {
+    //   $item->setPrice($_POST["price"]);
+    // }
+
+    // If no price given, keep the old price
+    $item->setPrice(!empty($_POST["price"])  ? $_POST["price"] : $item->getPrice());
+    
+    // If no Sale price given, keep the old sale price
+    $item->setSalePrice(!empty($_POST["salePrice"]) ? $_POST["salePrice"] : $item->getSalePrice());
+
     // If no description given, keep the old description
     // (or set to empty string if not set)
-    if (empty($_POST["description"])) {
-        $item->setDescription($item->getDescription());
-    } else {
-        $item->setDescription($_POST["description"]);
-    }
+  
+     $item->setDescription(!empty($_POST["description"]) ? $_POST["description"] : $item->getDescription());
+
+    
     // If no category ID given, keep the old categoryId
-    if (empty($_POST["categoryId"])) {
-        $item->setCategoryId($item->getCategoryId());
-    } else {
-        $item->setCategoryId(intval($_POST["categoryId"]));
-    }
+    $item->setCategoryId(!empty($_POST["categoryId"]) ? intval($_POST["categoryId"]) : $item->getCategoryId());
+    
 
     // Update the item in the database
     // Note: The updateItem method will use the item ID from the object

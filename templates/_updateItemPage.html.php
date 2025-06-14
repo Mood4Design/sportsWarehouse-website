@@ -15,7 +15,7 @@ require_once "includes/formHelpers.php";
                         <label for="itemId">Item ID:</label>
                         <input type="number" id="itemId" name="itemId" ><br><br>
                         <label for="itemName">Item Name:</label>
-                        <input type="text" id="updateItemName" name="updateItemName"><br><br>
+                        <input type="text" id="itemName" name="itemName"><br><br>
 
                                 <label for="photo">Photo:</label>
                                 <!-- MAX_FILE_SIZE must precede the file input field -->
