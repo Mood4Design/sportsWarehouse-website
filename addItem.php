@@ -54,9 +54,8 @@ try
     if (in_array($filetype, $allowed)) {
       // Check whether file exists before uploading it
       if (file_exists("image/" . $filename)) {
-        $filename = uniqid() . $filename;
+        throw new Exception("Error: " . $filename . " already exists.");
       }
-      
       move_uploaded_file($_FILES["photo"]["tmp_name"], "image/" . $filename);
       $photo = $filename;
     } else {
@@ -130,11 +129,11 @@ try
 
 } else {
   // Display the form to add a new category
-  include "templates/_addItemPage.html.php";
+ include_once TEMPLATES_DIR . "_addItemPage.html.php";
 }
 
   // Stop output buffering - store output into the $content variable
   $content = ob_get_clean();
 
   // Include the main layout template
-  include_once "templates/_layout.html.php";
+  include_once TEMPLATES_DIR . "_layout.html.php";

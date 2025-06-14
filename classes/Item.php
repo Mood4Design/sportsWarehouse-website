@@ -27,6 +27,7 @@ class Item
     // Create database connection and store into _db property (so other methods can use DBAccess)
     $db = require INCLUDES_DIR . "database.php";
     $this->_db = $db;
+    
   }
 
   #endregion
@@ -61,6 +62,9 @@ class Item
    */
   public function setItemName($itemName)
   {
+    if (empty($itemName)) {
+      return;
+    }
     // Remove spaces
     $value = trim($itemName);
 
@@ -156,6 +160,16 @@ class Item
     $this->_categoryId = $categoryId;
   }
 
+   /**
+    * Get category ID
+    *
+    * @return int The category ID
+    */
+  public function getCategoryId(): int
+  {
+    return $this->_categoryId;
+  }
+
   /**
    * Get photo
    *
@@ -196,7 +210,7 @@ class Item
 
       // Define SQL query, prepare statement, bind parameters
       $sql = <<<SQL
-        SELECT  itemID, itemName, price, salePrice, description
+        SELECT  itemID, itemName, photo,price, salePrice, description, categoryId
         FROM    item
         WHERE   itemID = :itemID
       SQL;
@@ -211,10 +225,13 @@ class Item
 
       // Populate the private properties with the retrieved values
       $this->_itemId = $row["itemID"];
+      $this->_photo = $row["photo"];
       $this->_itemName = $row["itemName"];
       $this->_price = $row["price"];
       $this->_salePrice = $row["salePrice"];
       $this->_description = $row["description"];
+      $this->_categoryId = $row["categoryId"];
+   
 
     } catch (PDOException $e) {
       
@@ -335,15 +352,17 @@ class Item
       // Define query, prepare statement, bind parameters
       $sql = <<<SQL
         UPDATE 	item
-        SET 	  itemName = :itemName, price = :price, salePrice = :salePrice, description = :description
+        SET 	  itemName = :itemName, photo = :photo, price = :price, salePrice = :salePrice, description = :description, categoryId = :categoryId
         WHERE 	itemID = :itemID
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
       $stmt->bindValue(":itemID", $id, PDO::PARAM_INT);
       $stmt->bindValue(":itemName", $this->_itemName, PDO::PARAM_STR);
+      $stmt->bindValue(":photo", $this->_photo, PDO::PARAM_STR);
       $stmt->bindValue(":price", $this->_price, PDO::PARAM_STR);
       $stmt->bindValue(":salePrice", $this->_salePrice, PDO::PARAM_STR);
       $stmt->bindValue(":description", $this->_description, PDO::PARAM_STR);
+      $stmt->bindValue(":categoryId", $this->_categoryId, PDO::PARAM_INT);
 
       // Execute query and return success value (true/false)
       return $this->_db->executeNonQuery($stmt);
@@ -385,3 +404,4 @@ class Item
   #endregion
 
 }
+

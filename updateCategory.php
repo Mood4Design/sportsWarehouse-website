@@ -82,11 +82,11 @@ require_once "includes/common.php";
 
 } else {
   // Display the form to add a new category
-  include "templates/_updateCategoryPage.html.php";
+  include_once TEMPLATES_DIR . "_updateCategoryPage.html.php";
 }
 
   // Stop output buffering - store output into the $content variable
   $content = ob_get_clean();
 
   // Include the main layout template
-  include_once "templates/_layout.html.php";
+  include_once TEMPLATES_DIR . "_layout.html.php";

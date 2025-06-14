@@ -14,13 +14,12 @@ require_once "includes/formHelpers.php";
                         <legend>Add Item</legend>
                         <label for="itemName">Item Name:</label>
                         <input type="text" id="itemName" name="itemName" required><br><br>
-                         <div class="form-row">
+                         
                                 <label for="photo">Photo:</label>
                                 <!-- MAX_FILE_SIZE must precede the file input field -->
-                                <input type="hidden" name="MAX_FILE_SIZE" value="<?= 100 * 1024 // 100KB ?>" />
-                                <input type="file" id="photo" name="photo" <?= setValue("photo") ?>>
-                        </div>
-                        <br><br>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="<?= $maxsize ?>" />
+                                <input type="file" id="photo" name="photo" <?= setValue("photo") ?>><br><br>
+                    
                         <label for="price">Price:</label>
                         <input type="number" id="price" name="price" step="0.01" required><br><br>
                         <label for="salePrice">Sale Price:</label>
