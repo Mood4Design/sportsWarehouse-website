@@ -24,47 +24,81 @@ $title = "Add Item";
 if (isset($_POST["submitAddItem"])) {
 try
 {
+  
+  /* 
+     * Photo file upload
+     * Reference for the $_FILES array: https://www.php.net/manual/en/features.file-upload.post-method.php
+     */
+
+    // File upload settings
+    $targetDirectory = ROOT_DIR . "image/";
+    $fileUploadOptional = false;
+
+
+    // Skip file upload if no file given and upload is optional
+    if (!($fileUploadOptional && $_FILES["photo"]["error"] === UPLOAD_ERR_NO_FILE)) {
+
+      // Get the filename of the uploaded file (what was it originally called?)
+      $fileName = isset($_FILES["photo"]["name"]) ? basename($_FILES["photo"]["name"]) : "";
+
+      // Make sure file is an image (using file extension)
+      $validExtensions = ["jpg", "jpeg", "gif", "png"];
+      $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+
+      if (!in_array($fileExtension, $validExtensions)) {
+        $errors["photo"] = "Invalid file extension, must be: " . implode(", ", $validExtensions);
+      }
+      
+      // Check file size (not too big) using php.ini config and MAX_FILE_SIZE set in the form
+      // You can also manually check the ["size"] of the file
+      if (
+        isset($_FILES["photo"]["error"]) && $_FILES["photo"]["error"] === UPLOAD_ERR_FORM_SIZE ||
+        isset($_FILES["photo"]["error"]) && $_FILES["photo"]["error"] === UPLOAD_ERR_INI_SIZE
+      ) {
+        $errors["photo"] = "File is too large.";
+      }
+
+      // NODO: Add other file upload validation
+
+      // Make sure there are no file errors detected
+      if (empty($errors["photo"])) {
+
+        // OPTIONAL: Change the file name
+        // $fileName = "xxxxx.$fileExtension";
+        // Check whether file exists before uploading it
+        if (file_exists("image/" . $fileName)) {
+        throw new Exception(" " . $fileName . " already exists.");
+      }
+        // Move uploaded file from the temp location into the target location
+        $moveFrom = $_FILES["photo"]["tmp_name"];
+        $moveTo = $targetDirectory . $fileName;
+
+        // Move uploaded file from the temp location into the target location
+        if (move_uploaded_file($moveFrom, $moveTo)) {
+
+          // Success
+          $photo = $fileName;
+
+        } else {
+
+          // Error
+          $errors["photo"] = "Uploaded file could not be moved.";
+
+        }
+      }
+    }
+  // If there are errors, display them and stop the process
+  if (!empty($errors)) {
+    include_once TEMPLATES_DIR . "_errorSummary.html.php";
+    return;
+  }
 
   // Create new object instance (using the constructor)
   $item = new Item();
-
-  $item->setItemName($_POST["itemName"]);
-
-  // Handle image upload
-  $photo = "";
-  if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
-    $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
-    $filename = $_FILES["photo"]["name"];
-    $filetype = $_FILES["photo"]["type"];
-    $filesize = $_FILES["photo"]["size"];
-
-    // Verify file extension
-    $ext = pathinfo($filename, PATHINFO_EXTENSION);
-    if (!array_key_exists($ext, $allowed)) {
-      throw new Exception("Error: Please select a valid file format.");
-    }
-
-    // Verify file size - maximum 5MB
-    $maxsize = 5 * 1024 * 1024;
-    if ($filesize > $maxsize) {
-      throw new Exception("Error: File size is larger than the allowed limit.");
-    }
-
-    // Verify MIME type
-    if (in_array($filetype, $allowed)) {
-      // Check whether file exists before uploading it
-      if (file_exists("image/" . $filename)) {
-        throw new Exception("Error: " . $filename . " already exists.");
-      }
-      move_uploaded_file($_FILES["photo"]["tmp_name"], "image/" . $filename);
-      $photo = $filename;
-    } else {
-      throw new Exception("Error: There was a problem uploading your file. Please try again.");
-    }
-  }
-
-  $item->setPhoto($photo);
-
+  // Set properties using the data from the form
+  // Note: You can also use the set methods to set properties
+  $item->setPhoto($photo ?? "");
+  $item->setItemName($_POST["itemName"] ?? "");
   $item->setPrice($_POST["price"] ?? 0.0);
   $item->setSalePrice($_POST["salePrice"] ?? 0.0);
   $item->setDescription($_POST["description"] ?? "");
@@ -74,50 +108,6 @@ try
   // Display success message
   $successMessage = "Item added successfully, new ID: {$newItemId}, Name: {$item->getItemName()}, Description: {$item->getDescription()}";
   include_once TEMPLATES_DIR . "_success.html.php";
-
-  
-
-  /* 
-   * TESTING: Updating a item
-   */
-
-  // // Get item from database, change its data, update in the database
-  // $itemIdToUpdate = 11;
-  // $item = new Item();
-  // $item->getItem($itemIdToUpdate);
-  // // $item->setItemName("Edited in PHP");
-  // $item->setDescription("This is an updated description from PHP...");
-  // $updateSuccess = $item->updateItem($itemIdToUpdate);
-
-  // if ($updateSuccess) {
-  //   echo <<<HTML
-  //   <p>✔ Item updated successfully: {$itemIdToUpdate}</p>
-  //   HTML;
-  // } else {
-  //   echo <<<HTML
-  //   <p>☠ Item update failed: {$itemIdToUpdate}</p>
-  //   HTML;
-  // }
-
-
-  /* 
-   * TESTING: Deleting a item
-   */
-
-  // // Get item from database, change its data, update in the database
-  // $itemIdToDelete = 9;
-  // $item = new Item();
-  // $deleteSuccess = $item->deleteItem($itemIdToDelete);
-
-  // if ($deleteSuccess) {
-  //   echo <<<HTML
-  //   <p>✔ Item deleted successfully: {$itemIdToDelete}</p>
-  //   HTML;
-  // } else {
-  //   echo <<<HTML
-  //   <p>☠ Item delete failed: {$itemIdToDelete}</p>
-  //   HTML;
-  // }
 
 } catch (Exception $ex) {
 

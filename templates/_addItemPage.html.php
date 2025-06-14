@@ -17,7 +17,7 @@ require_once "includes/formHelpers.php";
                          
                                 <label for="photo">Photo:</label>
                                 <!-- MAX_FILE_SIZE must precede the file input field -->
-                                <input type="hidden" name="MAX_FILE_SIZE" value="<?= $maxsize ?>" />
+                                <input type="hidden" name="MAX_FILE_SIZE" value="<?= 5 * 1024 * 1024 ?>" />
                                 <input type="file" id="photo" name="photo" <?= setValue("photo") ?>><br><br>
                     
                         <label for="price">Price:</label>

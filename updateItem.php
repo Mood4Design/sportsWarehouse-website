@@ -82,24 +82,6 @@ try
       }
     }
 
-
-  // Create new object instance (using the constructor)
-  //$item = new Item();
-
-  //$item->setItemName($_POST["itemName"]);
-  //$item->setPhoto($photo ?? "");
-  //$item->setPrice($_POST["price"] ?? 0.0);
-  //$item->setSalePrice($_POST["salePrice"] ?? 0.0);
-  //$item->setDescription($_POST["description"] ?? "");
-  //$item->setCategoryId($_POST["categoryId"] ?? 0);
-  //$newItemId = $item->insertItem();
-
-  // Display success message
-  //$successMessage = "Item added successfully, new ID: {$newItemId}, Name: {$item->getItemName()}, Description: {$item->getDescription()}";
-  //include_once TEMPLATES_DIR . "_success.html.php";
-
-  
-
   /* 
    *  Updating a item
    */

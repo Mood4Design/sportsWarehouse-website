@@ -98,50 +98,6 @@ try
   $successMessage = "Item added successfully, new ID: {$newItemId}, Name: {$item->getItemName()}, Description: {$item->getDescription()}";
   include_once TEMPLATES_DIR . "_success.html.php";
 
-  
-
-  /* 
-   * TESTING: Updating a item
-   */
-
-  // // Get item from database, change its data, update in the database
-  // $itemIdToUpdate = 11;
-  // $item = new Item();
-  // $item->getItem($itemIdToUpdate);
-  // // $item->setItemName("Edited in PHP");
-  // $item->setDescription("This is an updated description from PHP...");
-  // $updateSuccess = $item->updateItem($itemIdToUpdate);
-
-  // if ($updateSuccess) {
-  //   echo <<<HTML
-  //   <p>✔ Item updated successfully: {$itemIdToUpdate}</p>
-  //   HTML;
-  // } else {
-  //   echo <<<HTML
-  //   <p>☠ Item update failed: {$itemIdToUpdate}</p>
-  //   HTML;
-  // }
-
-
-  /* 
-   * TESTING: Deleting a item
-   */
-
-  // // Get item from database, change its data, update in the database
-  // $itemIdToDelete = 9;
-  // $item = new Item();
-  // $deleteSuccess = $item->deleteItem($itemIdToDelete);
-
-  // if ($deleteSuccess) {
-  //   echo <<<HTML
-  //   <p>✔ Item deleted successfully: {$itemIdToDelete}</p>
-  //   HTML;
-  // } else {
-  //   echo <<<HTML
-  //   <p>☠ Item delete failed: {$itemIdToDelete}</p>
-  //   HTML;
-  // }
-
 } catch (Exception $ex) {
 
   // "Handle" exception

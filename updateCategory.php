@@ -18,23 +18,8 @@ require_once "includes/common.php";
 
     try
     {
-
       /* 
-      * TESTING: Adding a new category 
-      */
-
-      // // Create new object, add data, insert into datbase
-      //$category = new Category();
-      //$category->setCategoryName($_POST["categoryName"]);
-      //$newCategoryId = $category->insertCategory();
-      
-      // Display success message
-      //$successMessage = "Category added successfully, new ID: $newCategoryId";
-      //include_once TEMPLATES_DIR . "_success.html.php";
-
-      
-      /* 
-      * TESTING: Updating a category 
+      * Updating a category 
       */
 
       // // Get category from database, change its data, update in the datbase
@@ -51,26 +36,6 @@ require_once "includes/common.php";
           $errorMessage = "Category update failed, ID: $categoryIdToUpdate";
           include_once TEMPLATES_DIR . "_error.html.php";
        }
-
-
-      /* 
-      * TESTING: Deleting a category 
-      */
-
-      // // Get category from database, change its data, update in the datbase
-      // $categoryIdToDelete = 9;
-      // $category = new Category();
-      // $deleteSuccess = $category->deleteCategory($categoryIdToDelete);
-
-      // if ($deleteSuccess) {
-      //   echo <<<HTML
-      //   <p>✔ Category deleted successfully: {$categoryIdToDelete}</p>
-      //   HTML;
-      // } else {
-      //   echo <<<HTML
-      //   <p>☠ Category delete failed: {$categoryIdToDelete}</p>
-      //   HTML;
-      // }
 
     } catch (Exception $ex) {
 
