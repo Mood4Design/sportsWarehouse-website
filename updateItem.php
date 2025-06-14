@@ -145,25 +145,6 @@ try
    }
 
 
-  /* 
-   * TESTING: Deleting a item
-   */
-
-  // // Get item from database, change its data, update in the database
-  // $itemIdToDelete = 9;
-  // $item = new Item();
-  // $deleteSuccess = $item->deleteItem($itemIdToDelete);
-
-  // if ($deleteSuccess) {
-  //   echo <<<HTML
-  //   <p>✔ Item deleted successfully: {$itemIdToDelete}</p>
-  //   HTML;
-  // } else {
-  //   echo <<<HTML
-  //   <p>☠ Item delete failed: {$itemIdToDelete}</p>
-  //   HTML;
-  // }
-
 } catch (Exception $ex) {
 
   // "Handle" exception
