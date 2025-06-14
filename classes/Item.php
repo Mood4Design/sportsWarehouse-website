@@ -298,6 +298,8 @@ class Item
         INSERT INTO item (itemName, photo, price, salePrice, description, categoryId)
         VALUES (:itemName, :photo, :price, :salePrice, :description, :categoryId)
       SQL;
+      
+      // Prepare the statement
       $stmt = $this->_db->prepareStatement($sql);
       $stmt->bindValue(":itemName", $this->_itemName, PDO::PARAM_STR);
       $stmt->bindValue(":photo", $this->_photo, PDO::PARAM_STR);

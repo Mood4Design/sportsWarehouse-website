@@ -39,7 +39,7 @@
   $sql = <<<SQL
     SELECT	itemId, itemName, categoryId, price, salePrice, description, photo
     FROM	  item
-    WHERE   price >= 0
+    WHERE   price > 50
     LIMIT   0, 6
   SQL;
 

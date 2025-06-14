@@ -29,7 +29,43 @@ try
   $item = new Item();
 
   $item->setItemName($_POST["itemName"]);
-  $item->setPhoto($_POST["photo"] ?? "");
+
+  // Handle image upload
+  $photo = "";
+  if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
+    $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+    $filename = $_FILES["photo"]["name"];
+    $filetype = $_FILES["photo"]["type"];
+    $filesize = $_FILES["photo"]["size"];
+
+    // Verify file extension
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    if (!array_key_exists($ext, $allowed)) {
+      throw new Exception("Error: Please select a valid file format.");
+    }
+
+    // Verify file size - maximum 5MB
+    $maxsize = 5 * 1024 * 1024;
+    if ($filesize > $maxsize) {
+      throw new Exception("Error: File size is larger than the allowed limit.");
+    }
+
+    // Verify MIME type
+    if (in_array($filetype, $allowed)) {
+      // Check whether file exists before uploading it
+      if (file_exists("image/" . $filename)) {
+        $filename = uniqid() . $filename;
+      }
+      
+      move_uploaded_file($_FILES["photo"]["tmp_name"], "image/" . $filename);
+      $photo = $filename;
+    } else {
+      throw new Exception("Error: There was a problem uploading your file. Please try again.");
+    }
+  }
+
+  $item->setPhoto($photo);
+
   $item->setPrice($_POST["price"] ?? 0.0);
   $item->setSalePrice($_POST["salePrice"] ?? 0.0);
   $item->setDescription($_POST["description"] ?? "");

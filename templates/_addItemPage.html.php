@@ -9,7 +9,7 @@ require_once "includes/formHelpers.php";
         <legend>Add Item</legend>
 
             <?php include "_errorSummary.html.php"; ?>
-                <form action="addItem.php" method="post">
+                <form action="addItem.php" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <legend>Add Item</legend>
                         <label for="itemName">Item Name:</label>
