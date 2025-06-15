@@ -30,8 +30,14 @@ require_once "includes/common.php";
        $updateSuccess = $category->updateCategory($categoryIdToUpdate);
 
        if ($updateSuccess) {
+          
+          //header("Location: updateCategory.php");
           $successMessage = "Category updated successfully, ID: $categoryIdToUpdate";
           include_once TEMPLATES_DIR . "_success.html.php";
+          session_start();
+          $_SESSION['successMessage'] = $successMessage;
+          header("Location: updateCategory.php");
+          exit();
        } else {
           $errorMessage = "Category update failed, ID: $categoryIdToUpdate";
           include_once TEMPLATES_DIR . "_error.html.php";
@@ -46,6 +52,16 @@ require_once "includes/common.php";
 }
 
 } else {
+  //display categories
+  if (isset($_SESSION['successMessage'])) {
+    $successMessage = $_SESSION['successMessage'];
+    unset($_SESSION['successMessage']); // Remove the message after displaying it
+    include_once TEMPLATES_DIR . "_success.html.php";
+  }
+  $category = new Category();
+  $categories = $category->getCategories();
+  include TEMPLATES_DIR . "_displayCategories.html.php";
+  
   // Display the form to add a new category
   include_once TEMPLATES_DIR . "_updateCategoryPage.html.php";
 }

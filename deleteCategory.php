@@ -18,48 +18,6 @@ require_once "includes/common.php";
 
     try
     {
-
-      /* 
-      * TESTING: Adding a new category 
-      */
-
-      // // Create new object, add data, insert into datbase
-      //$category = new Category();
-      //$category->setCategoryName($_POST["categoryName"]);
-      //$newCategoryId = $category->insertCategory();
-      
-      // Display success message
-      //$successMessage = "Category added successfully, new ID: $newCategoryId";
-      //include_once TEMPLATES_DIR . "_success.html.php";
-
-      
-      /* 
-      * TESTING: Updating a category 
-      */
-
-      // // Get category from database, change its data, update in the datbase
-      //// $categoryIdToUpdate = 11;
-      // $category = new Category();
-      // $category->getCategory($categoryIdToUpdate);
-      // // $category->setCategoryName("Edited in PHP");
-      // $category->setDescription("This is an updated description from PHP...");
-      // $updateSuccess = $category->updateCategory($categoryIdToUpdate);
-
-      // if ($updateSuccess) {
-      //   echo <<<HTML
-      //   <p>✔ Category updated successfully: {$categoryIdToUpdate}</p>
-      //   HTML;
-      // } else {
-      //   echo <<<HTML
-      //   <p>☠ Category update failed: {$categoryIdToUpdate}</p>
-      //   HTML;
-      // }
-
-
-      /* 
-      * TESTING: Deleting a category 
-      */
-
       // // Get category from database, change its data, update in the datbase
        $categoryIdToDelete = $_POST["categoryId"];
        $category = new Category();
@@ -67,10 +25,12 @@ require_once "includes/common.php";
 
 
        if ($deleteSuccess) {
-       
-          $successMessage = "Category deleted successfully, ID: $categoryIdToDelete";
+          $successMessage = "Category updated successfully, ID: $categoryIdToUpdate";
           include_once TEMPLATES_DIR . "_success.html.php";
-       } else {
+          session_start();
+          $_SESSION['successMessage'] = $successMessage;
+          header("Location: updateCategory.php");
+          exit();
           $errorMessage = "Category delete failed: {$categoryIdToDelete}";
           include_once TEMPLATES_DIR . "_error.html.php";
        }
@@ -84,6 +44,15 @@ require_once "includes/common.php";
 }
 
 } else {
+  //display categories
+  if (isset($_SESSION['successMessage'])) {
+    $successMessage = $_SESSION['successMessage'];
+    unset($_SESSION['successMessage']); // Remove the message after displaying it
+    include_once TEMPLATES_DIR . "_success.html.php";
+  }
+  $category = new Category();
+  $categories = $category->getCategories();
+  include TEMPLATES_DIR . "_displayCategories.html.php";
   // Display the form to delete a category
   include "templates/_deleteCategoryPage.html.php";
 }

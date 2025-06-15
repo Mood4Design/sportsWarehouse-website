@@ -29,51 +29,16 @@ require_once "includes/common.php";
       $newCategoryId = $category->insertCategory();
       
       // Display success message
-      $successMessage = "Category added successfully, new ID: $newCategoryId";
-      include_once TEMPLATES_DIR . "_success.html.php";
+      if ($newCategoryId){
+        $successMessage = "Category added successfully, new ID: $newCategoryId";
+        include_once TEMPLATES_DIR . "_success.html.php";
+        session_start();
+          $_SESSION['successMessage'] = $successMessage;
+          header("Location: addCategory.php");
+          exit();
 
+      }
       
-      /* 
-      * TESTING: Updating a category 
-      */
-
-      // // Get category from database, change its data, update in the datbase
-      // $categoryIdToUpdate = 11;
-      // $category = new Category();
-      // $category->getCategory($categoryIdToUpdate);
-      // // $category->setCategoryName("Edited in PHP");
-      // $category->setDescription("This is an updated description from PHP...");
-      // $updateSuccess = $category->updateCategory($categoryIdToUpdate);
-
-      // if ($updateSuccess) {
-      //   echo <<<HTML
-      //   <p>✔ Category updated successfully: {$categoryIdToUpdate}</p>
-      //   HTML;
-      // } else {
-      //   echo <<<HTML
-      //   <p>☠ Category update failed: {$categoryIdToUpdate}</p>
-      //   HTML;
-      // }
-
-
-      /* 
-      * TESTING: Deleting a category 
-      */
-
-      // // Get category from database, change its data, update in the datbase
-      // $categoryIdToDelete = 9;
-      // $category = new Category();
-      // $deleteSuccess = $category->deleteCategory($categoryIdToDelete);
-
-      // if ($deleteSuccess) {
-      //   echo <<<HTML
-      //   <p>✔ Category deleted successfully: {$categoryIdToDelete}</p>
-      //   HTML;
-      // } else {
-      //   echo <<<HTML
-      //   <p>☠ Category delete failed: {$categoryIdToDelete}</p>
-      //   HTML;
-      // }
 
     } catch (Exception $ex) {
 
@@ -84,6 +49,24 @@ require_once "includes/common.php";
 }
 
 } else {
+  //display categories
+    if (isset($_SESSION['successMessage'])) {
+      $successMessage = $_SESSION['successMessage'];
+      unset($_SESSION['successMessage']); // Remove the message after displaying it
+      include_once TEMPLATES_DIR . "_success.html.php";
+    }
+  // Fetch categories from the database
+  $category = new Category();
+     // try {
+            $categories = $category->getCategories();
+          // } catch (Exception $e) {
+          //   $errorMessage = "Error fetching categories: " . $e->getMessage();
+          //   include_once TEMPLATES_DIR . "_error.html.php";
+          //   $categories = []; // Ensure $categories is an empty array to avoid the foreach error
+          // }
+
+  //display categories
+  include "templates/_displayCategories.html.php";
   // Display the form to add a new category
   include_once TEMPLATES_DIR . "_addCategoryPage.html.php";
 }

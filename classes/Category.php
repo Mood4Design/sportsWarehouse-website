@@ -154,11 +154,14 @@ class Category
         FROM    category
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
-
+  
       // Get data from database and return all rows
-      return $this->_db->executeSQL($stmt);
-
+      $result = $this->_db->executeSQL($stmt);
+      error_log("Query result in getCategories(): " . print_r($result, true));
+      return $result;
+  
     } catch (Exception $ex) {
+      error_log("Exception in getCategories(): " . $ex->getMessage());
       
       // Throw the exception back up a level (don't handle it here - this is not the UI)
       throw $ex;
