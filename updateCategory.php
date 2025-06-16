@@ -30,14 +30,16 @@ require_once "includes/common.php";
        $updateSuccess = $category->updateCategory($categoryIdToUpdate);
 
        if ($updateSuccess) {
-          
-          //header("Location: updateCategory.php");
-          $successMessage = "Category updated successfully, ID: $categoryIdToUpdate";
-          include_once TEMPLATES_DIR . "_success.html.php";
-          session_start();
-          $_SESSION['successMessage'] = $successMessage;
-          header("Location: updateCategory.php");
-          exit();
+              // If the update was successful, prepare a success message
+              $successMessage = "Category updated successfully, ID: $categoryIdToUpdate";
+              // Include the success message template to display feedback to the user
+              include_once TEMPLATES_DIR . "_success.html.php";
+              // Start a session to store the success message (for display after redirect)
+              session_start();
+              $_SESSION['successMessage'] = $successMessage;
+              // Redirect to the updateCategory.php page to prevent form resubmission and show the updated list
+              header("Location: updateCategory.php");
+              exit(); // Stop further script execution after redirect
        } else {
           $errorMessage = "Category update failed, ID: $categoryIdToUpdate";
           include_once TEMPLATES_DIR . "_error.html.php";
@@ -52,12 +54,15 @@ require_once "includes/common.php";
 }
 
 } else {
-  //display categories
+  // If redirected after a successful update, display the success message from the session (if it exists)
   if (isset($_SESSION['successMessage'])) {
     $successMessage = $_SESSION['successMessage'];
-    unset($_SESSION['successMessage']); // Remove the message after displaying it
-    include_once TEMPLATES_DIR . "_success.html.php";
+    // Remove the message after displaying it to avoid repeat messages
+    unset($_SESSION['successMessage']); 
+     // Show the success message to the user
+    include_once TEMPLATES_DIR . "_success.html.php"; 
   }
+  // Display the list of categories
   $category = new Category();
   $categories = $category->getCategories();
   include TEMPLATES_DIR . "_displayCategories.html.php";
