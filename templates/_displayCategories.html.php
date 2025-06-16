@@ -2,6 +2,7 @@
    <h3> Edit  category</h3> 
     <table>
         <tr>
+            <div class="edit">
             <th style="padding-right: 20px">Category Id</th>
             <th style="padding-right: 20px">Cateegry Name</th>
             <th style="padding-right: 20px">
@@ -13,6 +14,7 @@
                     <option value="deleteCategory.php?id=1">Delete</option>
                 </select>
             </th>
+            </div>
             </tr>
                 <?php
                     foreach ($categories as $category):

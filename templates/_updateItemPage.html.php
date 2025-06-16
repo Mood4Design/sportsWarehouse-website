@@ -5,13 +5,13 @@ require_once "includes/formHelpers.php";
 <div class="container">
     <h3>Update item</h3>
     <p>Use the form below to update an existing item in the system.</p>
-    <p><strong>NOTE:</strong> This page is only accessible to logged-in users with admin privileges.</p>
+    <p>This page is only accessible to logged-in users with admin privileges.</p>
         <legend>Update Item</legend>
 
             <?php include "_errorSummary.html.php"; ?>
                 <form action="updateItem.php" method="post" enctype="multipart/form-data">
                     <fieldset>
-                        <legend>Update Item</legend>
+                        <legend><strong>Update Item</strong></legend>
                         <label for="itemId">Item ID:</label>
                         <input type="number" id="itemId" name="itemId" ><br><br>
                         <label for="itemName">Item Name:</label>

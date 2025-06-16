@@ -7,7 +7,7 @@
             <?php include "_errorSummary.html.php"; ?>
                 <form action="addCategory.php" method="post">
                     <fieldset>
-                        <legend>Add Category</legend>
+                        <legend><strong>Add Category</strong></legend>
                         <label for="categoryName">Category Name:</label>
                         <input type="text" id="categoryName" name="categoryName" required><br><br>
                         <button type="submit" value="Add new category" name="submitAddCategory">Add new category</button>

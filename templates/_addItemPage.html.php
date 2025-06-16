@@ -5,13 +5,12 @@ require_once "includes/formHelpers.php";
 <div class="container">
     <h3>Add new item</h3>
     <p>Use the form below to add a new item to the system.</p>
-    <p><strong>NOTE:</strong> This page is only accessible to logged-in users with admin privileges.</p>
-        <legend>Add Item</legend>
+    <p>This page is only accessible to logged-in users with admin privileges.</p>
 
             <?php include "_errorSummary.html.php"; ?>
                 <form action="addItem.php" method="post" enctype="multipart/form-data">
                     <fieldset>
-                        <legend>Add Item</legend>
+                        <legend><strong>Add Item</strong></legend>
                         <label for="itemName">Item Name:</label>
                         <input type="text" id="itemName" name="itemName" required><br><br>
                          
