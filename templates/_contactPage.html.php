@@ -59,3 +59,9 @@
          </form>
     </div>
 </section>
+</form>
+
+<?php $footerScripts = <<<HTML
+  <script src="scripts/registerPageValidation.js"></script>
+HTML;
+
