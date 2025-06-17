@@ -94,9 +94,9 @@ class Category
 
       // Define query, prepare statement, bind parameters
       $sql = <<<SQL
-        SELECT  categoryID, categoryName
+        SELECT  categoryId, categoryName
         FROM    category
-        WHERE   categoryID = :categoryId
+        WHERE   categoryId = :categoryId
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
       $stmt->bindValue(":categoryId", $id, PDO::PARAM_INT);
@@ -122,7 +122,7 @@ class Category
         $row = $rows[0];
         
         // Populate properties with data from database
-        $this->_categoryId = $row["categoryID"];
+        $this->_categoryId = $row["categoryId"];
         $this->_categoryName = $row["categoryName"];
 
       }
@@ -150,7 +150,7 @@ class Category
 
       // Define query, prepare statement, bind parameters
       $sql = <<<SQL
-        SELECT  categoryID, categoryName
+        SELECT  categoryId, categoryName
         FROM    category
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
@@ -248,10 +248,10 @@ class Category
       $sql = <<<SQL
         UPDATE 	category
         SET 	  categoryName = :categoryName
-        WHERE 	categoryID = :categoryID
+        WHERE 	categoryId = :categoryId
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
-      $stmt->bindValue(":categoryID", $id, PDO::PARAM_INT);
+      $stmt->bindValue(":categoryId", $id, PDO::PARAM_INT);
       $stmt->bindValue(":categoryName", $this->_categoryName, PDO::PARAM_STR);   
       // Execute query and return success value (true/false)
       return $this->_db->executeNonQuery($stmt);
@@ -278,10 +278,10 @@ class Category
       $sql = <<<SQL
         DELETE
         FROM 	  category
-        WHERE 	categoryID = :categoryID
+        WHERE 	categoryId = :categoryId
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
-      $stmt->bindValue(":categoryID", $id, PDO::PARAM_INT);
+      $stmt->bindValue(":getCategoryId", $id, PDO::PARAM_INT);
 
       // Execute query and return success value (true/false)
       return $this->_db->executeNonQuery($stmt);

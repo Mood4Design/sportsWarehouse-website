@@ -210,12 +210,12 @@ class Item
 
       // Define SQL query, prepare statement, bind parameters
       $sql = <<<SQL
-        SELECT  itemID, itemName, photo,price, salePrice, description, categoryId
+        SELECT  itemId, itemName, photo,price, salePrice, description, categoryId
         FROM    item
-        WHERE   itemID = :itemID
+        WHERE   itemId = :itemId
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
-      $stmt->bindParam(":itemID", $id, PDO::PARAM_INT);
+      $stmt->bindParam(":itemId", $id, PDO::PARAM_INT);
 
       // Execute query
       $rows = $this->_db->executeSQL($stmt);
@@ -224,7 +224,7 @@ class Item
       $row = $rows[0];
 
       // Populate the private properties with the retrieved values
-      $this->_itemId = $row["itemID"];
+      $this->_itemId = $row["itemId"];
       $this->_photo = $row["photo"];
       $this->_itemName = $row["itemName"];
       $this->_price = $row["price"];
@@ -254,7 +254,7 @@ class Item
 
       // Define SQL query, prepare statement, bind parameters
       $sql = <<<SQL
-        SELECT  itemID, itemName, price, description
+        SELECT  itemId, itemName, price, description
         FROM    item
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
@@ -389,10 +389,10 @@ class Item
       $sql = <<<SQL
         DELETE
         FROM 	  item
-        WHERE 	itemID = :itemID
+        WHERE 	itemIId = :itemId
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
-      $stmt->bindValue(":itemID", $id, PDO::PARAM_INT);
+      $stmt->bindValue(":itemId", $id, PDO::PARAM_INT);
 
       // Execute query and return success value (true/false)
       return $this->_db->executeNonQuery($stmt);

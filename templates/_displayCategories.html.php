@@ -3,9 +3,9 @@
     <table>
         <tr>
             <div class="edit">
-            <th style="padding-right: 20px">Category Id</th>
-            <th style="padding-right: 20px">Cateegry Name</th>
-            <th style="padding-right: 20px">
+            <th>Category Id</th>
+            <th>Category Name</th>
+            <th>
              
                 <select onchange="window.location.href=this.value;">
                     <option value="">Edit</option>
@@ -19,7 +19,7 @@
                 <?php
                     foreach ($categories as $category):
                     error_log("Category: " . print_r($category, true));
-                    $categoryId = $category["categoryID"];
+                    $categoryId = $category["categoryId"];
                     $categoryName = $category["categoryName"];
                 ?>
             

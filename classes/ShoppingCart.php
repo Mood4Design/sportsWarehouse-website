@@ -144,6 +144,51 @@ class ShoppingCart
     return $total;
   }
 
+  /**
+   * Save the cart items to the database
+   *
+   * @return void
+   */
+  //save cart
+public function saveCart($Address, $ContactNumber, $CreditCardNumber, $CSV, $Email, $ExpiryDate, $FirstName, $LastName, $NameOnCard)
+{
+//database setup and connect
+$db = $this->_db;
+
+//set up SQL statement to insert order
+  $sql = <<<SQL
+insert into shoppingOrder(address, contactNumber, creditCardNumber, csv, email, expiryDate, firstName, lastName, nameOnCard, orderDate) values(:Address, :ContactNumber, :CreditCardNumber, :CSV, :Email, :ExpiryDate, :FirstName, :LastName, :NameOnCard, curdate())
+SQL;
+$stmt = $this->_db->prepareStatement($sql);
+$stmt->bindValue(":Address" , $Address, PDO::PARAM_STR);
+$stmt->bindValue(":ContactNumber" , $ContactNumber, PDO::PARAM_STR);
+$stmt->bindValue(":CreditCardNumber" , $CreditCardNumber, PDO::PARAM_STR);
+$stmt->bindValue(":CSV" , $CSV, PDO::PARAM_STR);
+$stmt->bindValue(":Email" , $Email, PDO::PARAM_STR);
+$stmt->bindValue(":ExpiryDate" , $ExpiryDate, PDO::PARAM_STR);
+$stmt->bindValue(":FirstName" , $FirstName, PDO::PARAM_STR);
+$stmt->bindValue(":LastName" , $LastName, PDO::PARAM_STR);
+$stmt->bindValue(":NameOnCard" , $NameOnCard, PDO::PARAM_STR);
+$shoppingOrderID = $this->_db->executeNonQuery($stmt, true);
+
+//loop through shopping cart, insert items
+foreach ($this->_cartItems as $item)
+{
+//set up insert statement
+$sql = <<<SQL
+insert into OrderItem(itemID, price, quantity, shoppingOrderID) values(:ItemID, :Price, :Quantity, :shoppingOrderID)
+SQL;
+//for each item insert a row in OrderItem
+$$stmt = $this->_db->prepareStatement($sql);
+$stmt->bindValue(":ItemID" , $item->getItemId(), PDO::PARAM_INT);
+$stmt->bindValue(":Price" , $item->getPrice(), PDO::PARAM_STR);
+$stmt->bindValue(":Quantity" , $item->getQuantity(), PDO::PARAM_INT);
+$stmt->bindValue(":shoppingOrderID" , $shoppingOrderID, PDO::PARAM_INT);
+$db->executeNonQuery($stmt);
+}
+return $shoppingOrderID;
+}
+
   #endregion
 
   #region Helper methods
