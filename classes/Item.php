@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -353,10 +354,10 @@ class Item
       $sql = <<<SQL
         UPDATE 	item
         SET 	  itemName = :itemName, photo = :photo, price = :price, salePrice = :salePrice, description = :description, categoryId = :categoryId
-        WHERE 	itemID = :itemID
+        WHERE 	itemId = :itemId
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
-      $stmt->bindValue(":itemID", $id, PDO::PARAM_INT);
+      $stmt->bindValue(":itemId", $id, PDO::PARAM_INT);
       $stmt->bindValue(":itemName", $this->_itemName, PDO::PARAM_STR);
       $stmt->bindValue(":photo", $this->_photo, PDO::PARAM_STR);
       $stmt->bindValue(":price", $this->_price, PDO::PARAM_STR);
@@ -404,4 +405,3 @@ class Item
   #endregion
 
 }
-

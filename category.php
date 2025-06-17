@@ -22,7 +22,7 @@
     $sql = <<<SQL
       SELECT  categoryName
       FROM    category
-      WHERE   categoryID = :categoryId
+      WHERE   $categoryId = :categoryId
     SQL;
 
     // Prepare the statement

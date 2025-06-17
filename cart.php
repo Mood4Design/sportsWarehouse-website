@@ -92,8 +92,8 @@ if(isset($_POST["remove"]))
   ob_start();
 
   // Fetch items
-  $item1 = new Item();
-  $productRows = $item1->getItems();
+  $item = new Item();
+  $productRows = $item->getItems();
 
   //display items
   include "templates/_displayItems.html.php";

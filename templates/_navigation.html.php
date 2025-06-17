@@ -5,7 +5,7 @@
     "index.php" => "Home",
     "about.php" => "About SW",
     "contact.php" => "Contact US",
-    "home.php" => "View Products",
+    "cart.php" => "View Products",
   ];
 
   $currentPage = basename($_SERVER["SCRIPT_NAME"]);

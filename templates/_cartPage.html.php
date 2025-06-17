@@ -15,9 +15,9 @@
                     <th>Price</th>
                     <th>Qty</th>
                   </tr>
-                  
-                      <?php foreach ($cart->getItems() as $item): ?>
-                            <!-- 
+                  <?php
+                      foreach ($cart->getItems() as $item): ?>
+                            <!--
                             <tr>
                               <td>Product 1</td>
                               <td>$123</td>
@@ -34,6 +34,8 @@
 
                 </table>
 
-              <p>Total price: <?= $cart->calculateTotal() ?></p>
+              <h2>Total price: <?= $cart->calculateTotal() ?></h2>
+              <p><a href="checkout.php">Checkout</a></p>
+
           <?php endif ?>
 </div>

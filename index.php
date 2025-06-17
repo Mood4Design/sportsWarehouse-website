@@ -18,8 +18,8 @@
   $sql = <<<SQL
     SELECT	itemId, itemName, categoryId, price, salePrice, description, photo
     FROM	  item
-    WHERE   price > 1
-    
+    WHERE   price < 20
+    LIMIT   0, 6
   SQL;
 
   // Prepare the statement
@@ -28,8 +28,8 @@
   // Bind values (if needed)
   // $stmt->bindValue(":categoryId", $categoryId, PDO::PARAM_INT);
 
-  // Execute query (get the list of products under $1)
-  $productsOver1 = $db->executeSQL($stmt);
+  // Execute query (get the list of products under $20)
+  $productsUnder20 = $db->executeSQL($stmt);
 
   /*
    * Search for products > $50

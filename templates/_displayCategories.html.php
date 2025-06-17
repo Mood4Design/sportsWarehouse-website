@@ -2,9 +2,9 @@
    <h3> Edit  category</h3> 
     <table>
         <tr>
-            <div class="edit">
-            <th>Category Id</th>
-            <th>Category Name</th>
+            <div>
+            <th class="edit">Category Id</th>
+            <th class="edit">Category Name</th>
             <th>
              
                 <select onchange="window.location.href=this.value;">

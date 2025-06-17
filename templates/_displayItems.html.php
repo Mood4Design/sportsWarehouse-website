@@ -1,17 +1,27 @@
 <div class="container">
     <h3>Products to purchase</h3>
-    <section id="items">
+    <section class="product-grid">
     <?php foreach ($productRows as $row):
         $productName = $row["itemName"];
-        $price = sprintf('%01.2f', $row["price"]);
         $productId = $row["itemId"];
-            ?>
-        <article>
-            <form action="cart.php" method="post">
-                <strong><?= $productName ?></strong>
-                <p>Price $<?= $price ?></p>
-                <p><label for="qty<?=$itemId?>">quantity:</label>
-                <input class="qty" type="number" id="qty<?=$itemId?>" name="qty" value="1">
+        $photoPath = isset($row["photo"]) ? "image/" . $row["photo"] : "";
+        $price = isset($row["salePrice"]) && $row["salePrice"] > 0 ? $row["salePrice"] : $row["price"];
+    ?>
+        <article class="product">
+            <form class="product__link" action="cart.php" method="post">
+                <img src="<?= $photoPath ?>" alt="">
+                <p class="info"><?= $productName ?></p>
+                <p class="current-price">
+                    <?php if (isset($row['salePrice']) && $row['salePrice'] > 0): ?>
+                        <?= sprintf('$%1.2f', $row['salePrice']) ?>
+                        <span class="was-text">WAS</span>
+                        <span class="old-price"><del><?= sprintf('$%1.2f', esc($row['price'])) ?></del></span>
+                    <?php else: ?>
+                        <span class="old-price"><?= sprintf('$%1.2f', esc($row['price'])) ?></span>
+                    <?php endif; ?>
+                </p>
+                <p><label for="qty<?=$productId?>">quantity:</label>
+                <input class="qty" style="width: 50px; text-align: center;" type="number" id="qty<?=$productId?>" name="qty" value="1">
                 </p>
                 <p><input class="buy" type="submit" name="buy" value="Buy"></p>
                 <input type="hidden" value="<?=$productId?>" name="productId">
