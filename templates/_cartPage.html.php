@@ -10,7 +10,7 @@
 
               <?php else: ?>
 
-                <table>
+                <table  class="edit">
                   <tr>
                     <th>Item</th>
                     <th>Photo</th>
@@ -42,8 +42,10 @@
 
                 </table>
 
-              <p>Total price: <?= $cart->calculateTotal() ?></p>
-              <p><a href="checkout.php">Checkout</a></p>
-              
+                <div class="edit">
+                  <h2>Total price: &#20; <?= $cart->calculateTotal() ?></h2>
+                  <h4><a href="checkout.php">Checkout</a></h4>
+                </div>
+
           <?php endif ?>
 </div>
