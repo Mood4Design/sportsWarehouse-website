@@ -255,7 +255,7 @@ class Item
 
       // Define SQL query, prepare statement, bind parameters
       $sql = <<<SQL
-        SELECT  itemId, itemName, price, description
+        SELECT  itemId, itemName, price, description, photo
         FROM    item
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
