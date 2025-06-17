@@ -1,5 +1,6 @@
 <div class="container">
  
+
     <h3>Shopping cart</h3>
         <!-- <h2>Shopping cart</h2> -->
 
@@ -12,12 +13,13 @@
                 <table>
                   <tr>
                     <th>Item</th>
+                    <th>Photo</th>
                     <th>Price</th>
                     <th>Qty</th>
                   </tr>
-                  <?php
-                      foreach ($cart->getItems() as $item): ?>
-                            <!--
+                  
+                      <?php foreach ($cart->getItems() as $item): ?>
+                            <!-- 
                             <tr>
                               <td>Product 1</td>
                               <td>$123</td>
@@ -26,6 +28,12 @@
                             -->
                             <tr>
                               <td><?= $item->getItemName() ?></td>
+                              <?php 
+                                $itemObj = new Item();
+                                $itemObj->getItem($item->getItemId());
+                                $photoPath = "image/" . $itemObj->getPhoto();
+                              ?>
+                              <td><img src="<?= $photoPath ?>" alt="<?= $item->getItemName() ?>" width="50"></td>
                               <td><?= sprintf('$%1.2f', $item->getPrice() ?? "--") ?></td>
                               <td><?= $item->getQuantity() ?></td>
                             </tr>
@@ -34,8 +42,8 @@
 
                 </table>
 
-              <h2>Total price: <?= $cart->calculateTotal() ?></h2>
+              <p>Total price: <?= $cart->calculateTotal() ?></p>
               <p><a href="checkout.php">Checkout</a></p>
-
+              
           <?php endif ?>
 </div>
