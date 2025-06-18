@@ -28,21 +28,21 @@
                             </tr>
                             -->
                             <tr>
-                              <td><?= $item->getItemName() ?></td>
-                              <?php 
-                                $itemObj = new Item();
-                                $itemObj->getItem($item->getItemId());
-                                $photoPath = "image/" . $itemObj->getPhoto();
-                              ?>
-                              <td><img src="<?= $photoPath ?>" alt="<?= $item->getItemName() ?>" width="50"></td>
-                              <td><?= sprintf('$%1.2f', $item->getPrice() ?? "--") ?></td>
-                              <td><?= $item->getQuantity() ?></td>
-                              <td>
-                                <form action="cart.php" method="post">
-                                  <input type="hidden" name="itemId" value="<?= $item->getItemId() ?>">
-                                  <input type="submit" name="remove" value="Remove">
-                                </form>
-                              </td>
+                                <td><?= $item->getItemName() ?></td>
+                                    <?php 
+                                      $itemObj = new Item();
+                                      $itemObj->getItem($item->getItemId());
+                                      $photoPath = "image/" . $itemObj->getPhoto();
+                                    ?>
+                                <td><img src="<?= $photoPath ?>" alt="<?= $item->getItemName() ?>" width="50"></td>
+                                <td><?= sprintf('$%1.2f', $item->getPrice() ?? "--") ?></td>
+                                <td><?= $item->getQuantity() ?></td>
+                                <td>
+                                  <form action="cart.php" method="post">
+                                    <input type="hidden" name="itemId" value="<?= $item->getItemId() ?>">
+                                    <input type="submit" name="remove" value="Remove">
+                                  </form>
+                                </td>
                             </tr>
                       
                       <?php endforeach ?>

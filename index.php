@@ -39,7 +39,7 @@
   $sql = <<<SQL
     SELECT	itemId, itemName, categoryId, price, salePrice, description, photo
     FROM	  item
-    WHERE   price > 50
+    WHERE   price < 50
     LIMIT   0, 6
   SQL;
 
@@ -47,7 +47,7 @@
   $stmt = $db->prepareStatement($sql);
 
   // Execute query (get the list of products over $50)
-  $productsOver50 = $db->executeSQL($stmt);
+  $productsUnder50 = $db->executeSQL($stmt);
 
   // Include the page-specific template
   include_once "templates/_indexPage.html.php";
