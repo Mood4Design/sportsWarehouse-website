@@ -391,9 +391,7 @@ class Item
 
       // First, delete all order items associated with this item
       // This is to ensure that we do not have orphaned order items in the database
-
-
-
+     
       // Define query to delete order items
       $sqlOrderItems = <<<SQL
         DELETE
