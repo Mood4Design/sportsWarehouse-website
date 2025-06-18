@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2025 at 08:20 PM
+-- Generation Time: Jun 18, 2025 at 09:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,53 @@ INSERT INTO `category` (`categoryId`, `categoryName`) VALUES
 (4, 'Tops'),
 (5, 'Balls'),
 (6, 'Equipment'),
-(7, 'Training Gear');
+(7, 'Training Gear'),
+(8, 'zoo'),
+(10, 'Jacket');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+CREATE TABLE `employees` (
+  `employeeID` int(11) NOT NULL,
+  `lastName` varchar(20) NOT NULL,
+  `firstName` varchar(10) NOT NULL,
+  `title` varchar(30) DEFAULT NULL,
+  `titleOfCourtesy` varchar(25) DEFAULT NULL,
+  `birthDate` datetime DEFAULT NULL,
+  `hireDate` datetime DEFAULT NULL,
+  `address` varchar(60) DEFAULT NULL,
+  `city` varchar(15) DEFAULT NULL,
+  `region` varchar(15) DEFAULT NULL,
+  `postalCode` varchar(10) DEFAULT NULL,
+  `country` varchar(15) DEFAULT NULL,
+  `homePhone` varchar(24) DEFAULT NULL,
+  `extension` varchar(4) DEFAULT NULL,
+  `notes` mediumtext NOT NULL,
+  `reportsTo` int(11) DEFAULT NULL,
+  `photoPath` varchar(255) DEFAULT NULL,
+  `salary` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`employeeID`, `lastName`, `firstName`, `title`, `titleOfCourtesy`, `birthDate`, `hireDate`, `address`, `city`, `region`, `postalCode`, `country`, `homePhone`, `extension`, `notes`, `reportsTo`, `photoPath`, `salary`) VALUES
+(1, 'Davolio', 'Nancy', 'Sales Representative', 'Ms.', '1948-12-08 00:00:00', '1992-05-01 00:00:00', '507 - 20th Ave. E.Apt. 2A', 'Seattle', 'WA', '98122', 'USA', '(206) 555-9857', '5467', 'Education includes a BA in psychology from Colorado State University in 1970.  She also completed \"The Art of the Cold Call.\"  Nancy is a member of Toastmasters International.', 2, 'nancyDavolio.jpg', 2954.55),
+(2, 'Fuller', 'Andrew', 'Vice President, Sales', 'Dr.', '1952-02-19 00:00:00', '1992-08-14 00:00:00', '908 W. Capital Way', 'Tacoma', 'WA', '98401', 'USA', '(206) 555-9482', '3457', 'Andrew received his BTS commercial in 1974 and a Ph.D. in international marketing from the University of Dallas in 1981.  He is fluent in French and Italian and reads German.  He joined the company as a sales representative, was promoted to sales manager in January 1992 and to vice president of sales in March 1993.  Andrew is a member of the Sales Management Roundtable, the Seattle Chamber of Commerce, and the Pacific Rim Importers Association.', NULL, 'andrewFuller.jpg', 2254.49),
+(3, 'Leverling', 'Janet', 'Sales Representative', 'Ms.', '1963-08-30 00:00:00', '1992-04-01 00:00:00', '722 Moss Bay Blvd.', 'Kirkland', 'WA', '98033', 'USA', '(206) 555-3412', '3355', 'Janet has a BS degree in chemistry from Boston College (1984).  She has also completed a certificate program in food retailing management.  Janet was hired as a sales associate in 1991 and promoted to sales representative in February 1992.', 2, 'janetLeverling.jpg', 3119.15),
+(4, 'Peacock', 'Margaret', 'Sales Representative', 'Mrs.', '1937-09-19 00:00:00', '1993-05-03 00:00:00', '4110 Old Redmond Rd.', 'Redmond', 'WA', '98052', 'USA', '(206) 555-8122', '5176', 'Margaret holds a BA in English literature from Concordia College (1958) and an MA from the American Institute of Culinary Arts (1966).  She was assigned to the London office temporarily from July through November 1992.', 2, 'MargaretPeacock.jpg', 1861.08),
+(5, 'Buchanan', 'Steven', 'Sales Manager', 'Mr.', '1955-03-04 00:00:00', '1993-10-17 00:00:00', '14 Garrett Hill', 'London', NULL, 'SW1 8JR', 'UK', '(71) 555-4848', '3453', 'Steven Buchanan graduated from St. Andrews University, Scotland, with a BSC degree in 1976.  Upon joining the company as a sales representative in 1992, he spent 6 months in an orientation program at the Seattle office and then returned to his permanent post in London.  He was promoted to sales manager in March 1993.  Mr. Buchanan has completed the courses \"Successful Telemarketing\" and \"International Sales Management.\"  He is fluent in French.', 2, 'StevenBuchanan.jpg', 1744.21),
+(6, 'Suyama', 'Michael', 'Sales Representative', 'Mr.', '1963-07-02 00:00:00', '1993-10-17 00:00:00', 'Coventry House\r\nMiner Rd.', 'London', NULL, 'EC2 7JR', 'UK', '(71) 555-7773', '428', 'Michael is a graduate of Sussex University (MA, economics, 1983) and the University of California at Los Angeles (MBA, marketing, 1986).  He has also taken the courses \"Multi-Cultural Selling\" and \"Time Management for the Sales Professional.\"  He is fluent in Japanese and can read and write French, Portuguese, and Spanish.', 5, 'michaelSuyama.jpg', 2004.07),
+(7, 'King', 'Robert', 'Sales Representative', 'Mr.', '1960-05-29 00:00:00', '1994-01-02 00:00:00', 'Edgeham Hollow\r\nWinchester Way', 'London', NULL, 'RG1 9SP', 'UK', '(71) 555-5598', '465', 'Robert King served in the Peace Corps and traveled extensively before completing his degree in English at the University of Michigan in 1992, the year he joined the company.  After completing a course entitled \"Selling in Europe,\" he was transferred to the London office in March 1993.', 5, 'robertKing.jpg', 1991.55),
+(8, 'Callahan', 'Laura', 'Inside Sales Coordinator', 'Ms.', '1958-01-09 00:00:00', '1994-03-05 00:00:00', '4726 - 11th Ave. N.E.', 'Seattle', 'WA', '98105', 'USA', '(206) 555-1189', '2344', 'Laura received a BA in psychology from the University of Washington.  She has also completed a course in business French.  She reads and writes French.', 2, 'lauraCallahan.jpg', 2100.5),
+(9, 'Dodsworth', 'Anne', 'Sales Representative', 'Ms.', '1966-01-27 00:00:00', '1994-11-15 00:00:00', '7 Houndstooth Rd.', 'London', NULL, 'WG2 7LT', 'UK', '(71) 555-4444', '452', 'Anne has a BA degree in English from St. Lawrence College.  She is fluent in French and German.', 5, 'anneDodsworth.jpg', 2333.33),
+(13, 'Lee', 'Allan', 'Manager', 'Mr', '1980-06-30 00:00:00', '2025-05-30 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, 'MarkAnderson.jpg', 200000),
+(14, 'Lee', 'Hellen', 'Manager', 'Mrs', '2012-11-22 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'she is good', 1, 'CathyBrown.jpg', 100000);
 
 -- --------------------------------------------------------
 
@@ -74,8 +120,7 @@ INSERT INTO `item` (`itemId`, `itemName`, `photo`, `price`, `salePrice`, `descri
 (5, 'Asics Gel Lethal Tigreor 8 IT Men\'s', 'footyBoots.jpg', 160.00, NULL, 'The GEL-Lethal Tigreor 8 IT is an advanced lightweight football boot designed for high performance and speed. This boot features HG10mm technology.', 1, 1),
 (6, 'Asics GEL Kayano 27 Kids Running Shoes', 'runningShoes.jpg', 179.99, NULL, 'Asics refine running for the next generation of young athletes with the Asics GEL Kayano 27. The exceptional support and comfort of the Kayano return in a lighter even more comfortable runner thanks to the two-piece, Flightfoam Propel midsole. ', 0, 1),
 (7, 'Adidas must have stripes tee', 'blackTop.jpg', 34.99, NULL, 'Built for busy training schedules, the adidas Boys Aeroready 3-Stripes Tee is a must have for budding young athletes.', 0, 4),
-(8, 'Nike girls Futura Air tee', 'whitePinkTop.jpg', 29.99, 24.99, 'Your child will be motivated to perform her best at training in the Nike Girls Futura Air Tee. The comfortable, non-restrictive crew neckline offers durability, while the iconic Nike Air logo is featured across the front and on the sleeve to highlight her sporty vibe.', 0, 4),
-(9, 'Adidas 3 stripes flare pants', 'tracksuit.jpg', 69.99, 55.99, 'Kick it old school this winter when you step out in the adidas Women\'s Tricot 3-Stripes Flare Pants. Ideal for post-gym wear, the stretchy tricot fabric allows you to move with ease as you recover from your big session. ', 0, 3);
+(8, 'Nike girls Futura Air tee', 'whitePinkTop.jpg', 29.99, 24.99, 'Your child will be motivated to perform her best at training in the Nike Girls Futura Air Tee. The comfortable, non-restrictive crew neckline offers durability, while the iconic Nike Air logo is featured across the front and on the sleeve to highlight her sporty vibe.', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -89,6 +134,15 @@ CREATE TABLE `orderitem` (
   `quantity` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `orderitem`
+--
+
+INSERT INTO `orderitem` (`itemId`, `shoppingOrderId`, `quantity`, `price`) VALUES
+(1, 2, 1, 46.00),
+(7, 6, 1, 34.99),
+(7, 9, 1, 34.99);
 
 -- --------------------------------------------------------
 
@@ -110,6 +164,21 @@ CREATE TABLE `shoppingorder` (
   `csv` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `shoppingorder`
+--
+
+INSERT INTO `shoppingorder` (`shoppingOrderId`, `orderDate`, `firstName`, `lastName`, `address`, `contactNumber`, `email`, `creditCardNumber`, `expiryDate`, `nameOnCard`, `csv`) VALUES
+(1, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', 'rew'),
+(2, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', ''),
+(3, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', ''),
+(4, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', ''),
+(5, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', ''),
+(6, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69', '', '', '', ''),
+(7, '2025-06-18 00:00:00', 'A', 'Lee', '9 Pawley Street', '0422293668', 'leallan69gmail.com', '', '', '', ''),
+(8, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '12345678903', '20/27', 'Allan', '123'),
+(9, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -123,6 +192,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userId`, `userName`, `password`) VALUES
+(2, 'Allan', '$2y$10$IHatJC2EZKIzspgmQcfhkuhiyHh7b6sCXoHrE84.xnmHw5.1iVvua');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -132,6 +208,15 @@ CREATE TABLE `user` (
 ALTER TABLE `category`
   ADD PRIMARY KEY (`categoryId`),
   ADD KEY `categoryId` (`categoryId`);
+
+--
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`employeeID`),
+  ADD KEY `lastName` (`lastName`),
+  ADD KEY `postalCode` (`postalCode`),
+  ADD KEY `FK_employees_employees` (`reportsTo`);
 
 --
 -- Indexes for table `item`
@@ -168,7 +253,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `item`
@@ -180,17 +271,23 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `shoppingorder`
 --
 ALTER TABLE `shoppingorder`
-  MODIFY `shoppingOrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `shoppingOrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `employees`
+--
+ALTER TABLE `employees`
+  ADD CONSTRAINT `FK_employees_employees` FOREIGN KEY (`reportsTo`) REFERENCES `employees` (`employeeID`);
 
 --
 -- Constraints for table `item`
