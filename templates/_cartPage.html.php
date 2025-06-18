@@ -6,7 +6,7 @@
 
           <?php if ($cart->count() === 0): ?>
 
-              <p>Your shopping cart is empty, you should <a href="index.php">browse for something to buy</a>!</p>
+              <p>Your shopping cart is empty, you should <a href="cart.php">browse for something to buy</a>!</p>
 
               <?php else: ?>
 

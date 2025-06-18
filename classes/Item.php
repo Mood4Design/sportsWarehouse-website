@@ -13,7 +13,7 @@ class Item
   private int $_itemId;
   private string $_itemName;
   private float $_price;
-  private float $_salePrice;
+  private ?float $_salePrice;
   private string $_description;
   private DBAccess $_db;
   private int $_categoryId;
@@ -121,7 +121,7 @@ class Item
    * @param  float $salePrice The new sale price
    * @return void
    */
-  public function setSalePrice(float $salePrice): void
+  public function setSalePrice(?float $salePrice): void
   {
     $this->_salePrice = $salePrice;
   }

@@ -186,7 +186,7 @@ $stmt->bindValue(":Price" , $item->getPrice(), PDO::PARAM_STR);
 $stmt->bindValue(":Quantity" , $item->getQuantity(), PDO::PARAM_INT);
 $stmt->bindValue(":ShoppingOrderID" , $shoppingOrderID, PDO::PARAM_INT);
 // Execute query and return success value (true/false)
-      return $this->_db->executeNonQuery($stmt);
+return $this->_db->executeNonQuery($stmt);
 
 }
 return $shoppingOrderID;
