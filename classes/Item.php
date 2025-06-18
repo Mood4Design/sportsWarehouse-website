@@ -389,29 +389,6 @@ class Item
       // Open the database connection
       $this->_db->connect();
 
-              try {
-
-                      // Open the database connection
-                      $this->_db->connect();
-
-                      // Define query to update order items
-                      $sqlOrderItems = <<<SQL
-                        UPDATE orderitem
-                        SET itemId = NULL
-                        WHERE itemId = :itemId
-                      SQL;
-                      $stmtOrderItems = $this->_db->prepareStatement($sqlOrderItems);
-                      $stmtOrderItems->bindValue(":itemId", $id, PDO::PARAM_INT);
-
-                      // Execute query to update order items
-                      $this->_db->executeNonQuery($stmtOrderItems);
-
-                      } catch (Exception $ex) {
-              throw $ex;
-            }
-
-
-
       // Define query to delete order items
       $sqlOrderItems = <<<SQL
         DELETE
