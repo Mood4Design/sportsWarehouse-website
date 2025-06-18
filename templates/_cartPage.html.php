@@ -1,6 +1,5 @@
 <div class="container">
  
-
     <h3>Shopping cart</h3>
         <!-- <h2>Shopping cart</h2> -->
 
