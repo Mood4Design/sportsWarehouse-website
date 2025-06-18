@@ -393,7 +393,7 @@ class Item
       $sql = <<<SQL
         DELETE
         FROM 	  item
-        WHERE 	itemIId = :itemId
+        WHERE 	itemId = :itemId
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
       $stmt->bindValue(":itemId", $id, PDO::PARAM_INT);
