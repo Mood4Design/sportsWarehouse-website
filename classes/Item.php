@@ -222,6 +222,9 @@ class Item
       $rows = $this->_db->executeSQL($stmt);
 
       // Get the first (and only) row - we are searching by a unique primary key
+      if (empty($rows)) {
+        throw new Exception("Item with ID " . $id . " not found.");
+      }
       $row = $rows[0];
 
       // Populate the private properties with the retrieved values

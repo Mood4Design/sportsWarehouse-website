@@ -3,7 +3,7 @@
     <section class="product-grid">
     <?php foreach ($productRows as $row):
         $productName = $row["itemName"];
-        $productId = $row["itemId"];
+        $itemId = $row["itemId"];
         $photoPath = isset($row["photo"]) ? "image/" . $row["photo"] : "";
         $price = isset($row["salePrice"]) && $row["salePrice"] > 0 ? $row["salePrice"] : $row["price"];
     ?>
@@ -20,14 +20,14 @@
                         <span class="old-price"><?= sprintf('$%1.2f', esc($row['price'])) ?></span>
                     <?php endif; ?>
                 </p>
-                <p><label for="qty<?=$productId?>">quantity:</label>
-                <input class="qty" style="width: 50px; text-align: center;" type="number" id="qty<?=$productId?>" name="qty" value="1">
+                <p><label for="qty<?=$itemId?>">quantity:</label>
+                <input class="qty" style="width: 50px; text-align: center;" type="number" id="qty<?=$itemId?>" name="qty" value="1">
                 </p>
                 <p><input class="buy" type="submit" name="buy" value="Buy"></p>
-                <input type="hidden" value="<?=$productId?>" name="productId">
+                <input type="hidden" value="<?=$itemId?>" name="itemId">
             </form>
         </article>
     <?php endforeach; ?>
-    </form>
+    
     </section>
 </div>

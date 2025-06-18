@@ -24,7 +24,7 @@ class ShoppingCart
    */
   public function __construct()
   {
-    // Create database connection and store into _db property so other methods can use DBAccess
+     // Create database connection and store into _db property so other methods can use DBAccess
     $db = require INCLUDES_DIR . "database.php";
     $this->_db = $db;
   }
@@ -153,11 +153,12 @@ class ShoppingCart
 public function saveCart($Address, $ContactNumber, $CreditCardNumber, $CSV, $Email, $ExpiryDate, $FirstName, $LastName, $NameOnCard)
 {
 //database setup and connect
-$db = $this->_db;
+ $this->_db->connect();
+
 
 //set up SQL statement to insert order
   $sql = <<<SQL
-insert into shoppingOrder(address, contactNumber, creditCardNumber, csv, email, expiryDate, firstName, lastName, nameOnCard, orderDate) values(:Address, :ContactNumber, :CreditCardNumber, :CSV, :Email, :ExpiryDate, :FirstName, :LastName, :NameOnCard, curdate())
+insert into shoppingorder(address, contactNumber, creditCardNumber, csv, email, expiryDate, firstName, lastName, nameOnCard, orderDate) values(:Address, :ContactNumber, :CreditCardNumber, :CSV, :Email, :ExpiryDate, :FirstName, :LastName, :NameOnCard, curdate())
 SQL;
 $stmt = $this->_db->prepareStatement($sql);
 $stmt->bindValue(":Address" , $Address, PDO::PARAM_STR);
@@ -176,15 +177,17 @@ foreach ($this->_cartItems as $item)
 {
 //set up insert statement
 $sql = <<<SQL
-insert into OrderItem(itemID, price, quantity, shoppingOrderID) values(:ItemID, :Price, :Quantity, :shoppingOrderID)
+insert into orderitem(itemId, price, quantity, shoppingOrderID) values(:ItemId, :Price, :Quantity, :ShoppingOrderID)
 SQL;
 //for each item insert a row in OrderItem
-$$stmt = $this->_db->prepareStatement($sql);
-$stmt->bindValue(":ItemID" , $item->getItemId(), PDO::PARAM_INT);
+$stmt = $this->_db->prepareStatement($sql);
+$stmt->bindValue(":ItemId" , $item->getItemId(), PDO::PARAM_INT);
 $stmt->bindValue(":Price" , $item->getPrice(), PDO::PARAM_STR);
 $stmt->bindValue(":Quantity" , $item->getQuantity(), PDO::PARAM_INT);
-$stmt->bindValue(":shoppingOrderID" , $shoppingOrderID, PDO::PARAM_INT);
-$db->executeNonQuery($stmt);
+$stmt->bindValue(":ShoppingOrderID" , $shoppingOrderID, PDO::PARAM_INT);
+// Execute query and return success value (true/false)
+      return $this->_db->executeNonQuery($stmt);
+
 }
 return $shoppingOrderID;
 }

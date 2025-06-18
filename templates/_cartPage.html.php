@@ -16,6 +16,7 @@
                     <th>Photo</th>
                     <th>Price</th>
                     <th>Qty</th>
+                    <th></th>
                   </tr>
                   
                       <?php foreach ($cart->getItems() as $item): ?>
@@ -36,6 +37,12 @@
                               <td><img src="<?= $photoPath ?>" alt="<?= $item->getItemName() ?>" width="50"></td>
                               <td><?= sprintf('$%1.2f', $item->getPrice() ?? "--") ?></td>
                               <td><?= $item->getQuantity() ?></td>
+                              <td>
+                                <form action="cart.php" method="post">
+                                  <input type="hidden" name="itemId" value="<?= $item->getItemId() ?>">
+                                  <input type="submit" name="remove" value="Remove">
+                                </form>
+                              </td>
                             </tr>
                       
                       <?php endforeach ?>
@@ -43,8 +50,14 @@
                 </table>
 
                 <div class="edit">
-                  <h2>Total price: &#20; <?= $cart->calculateTotal() ?></h2>
+                  <h2>Total price:$<?= $cart->calculateTotal() ?></h2>
                   <h4><a href="checkout.php">Checkout</a></h4>
+                  <h4><a href="cart.php">Continue shopping</a></h4>
+
+                  <form action="cart.php" method="post">
+                    <input type="hidden" name="itemId" value="<?= $item->getItemId() ?>">
+                    <input type="submit" name="remove" value="Empty cart">
+                  </form>
                 </div>
 
           <?php endif ?>

@@ -17,15 +17,17 @@
   require_once CLASSES_DIR . "ShoppingCart.php";
   require_once CLASSES_DIR . "CartItem.php";
   require_once CLASSES_DIR . "Auth.php";
+  require_once CLASSES_DIR . "DBAccess.php";
+  
 
   // Load Composer's autoloader (created by Composer, not included with PHPMailer)
   require_once ROOT_DIR . "vendor/autoload.php";
 
-  // Include "secrets" that are not tracked by Git
-  require_once INCLUDES_DIR . "secrets.php";
-
   // Database connection (create DBAccess instance in the $db variable)
   require_once INCLUDES_DIR . "database.php";
+
+  // Include "secrets" that are not tracked by Git
+  require_once INCLUDES_DIR . "secrets.php";
 
   // Open the database connection
   $db->connect();
