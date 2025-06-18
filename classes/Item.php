@@ -385,21 +385,58 @@ class Item
   public function deleteItem(int $id): bool
   {
     try {
-      
+
       // Open the database connection
       $this->_db->connect();
 
-      // Define query, prepare statement, bind parameters
-      $sql = <<<SQL
-        DELETE
-        FROM 	  item
-        WHERE 	itemId = :itemId
-      SQL;
-      $stmt = $this->_db->prepareStatement($sql);
-      $stmt->bindValue(":itemId", $id, PDO::PARAM_INT);
+              try {
 
-      // Execute query and return success value (true/false)
-      return $this->_db->executeNonQuery($stmt);
+                      // Open the database connection
+                      $this->_db->connect();
+
+                      // Define query to update order items
+                      $sqlOrderItems = <<<SQL
+                        UPDATE orderitem
+                        SET itemId = NULL
+                        WHERE itemId = :itemId
+                      SQL;
+                      $stmtOrderItems = $this->_db->prepareStatement($sqlOrderItems);
+                      $stmtOrderItems->bindValue(":itemId", $id, PDO::PARAM_INT);
+
+                      // Execute query to update order items
+                      $this->_db->executeNonQuery($stmtOrderItems);
+
+                      } catch (Exception $ex) {
+              throw $ex;
+            }
+
+
+
+      // Define query to delete order items
+      $sqlOrderItems = <<<SQL
+        DELETE
+        FROM   orderitem
+        WHERE  itemId = :itemId
+      SQL;
+      $stmtOrderItems = $this->_db->prepareStatement($sqlOrderItems);
+      $stmtOrderItems->bindValue(":itemId", $id, PDO::PARAM_INT);
+
+      // Execute query to delete order items
+      $this->_db->executeNonQuery($stmtOrderItems);
+
+      // Define query to delete the item
+      $sqlItem = <<<SQL
+        DELETE
+        FROM   item
+        WHERE  itemId = :itemId
+      SQL;
+      $stmtItem = $this->_db->prepareStatement($sqlItem);
+      $stmtItem->bindValue(":itemId", $id, PDO::PARAM_INT);
+
+      // Execute query to delete the item
+      $success = $this->_db->executeNonQuery($stmtItem);
+
+      return $success;
 
     } catch (Exception $ex) {
       throw $ex;
