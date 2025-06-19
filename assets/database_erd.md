@@ -58,7 +58,15 @@ erDiagram
         varchar(255) password
     }
 
-    employees ||--|| employees : reportsTo
-    item ||--|| category : categoryId
-    orderitem ||--o{ item : itemId
+    employees ||--|o employees : reportsTo
+    item ||--o{ category : categoryId
+    orderitem }o--|| item : itemId
     orderitem }o--|| shoppingorder : shoppingOrderId
+
+   
+    Based on the database schema, the relationships should be:
+    
+employees ||--|o employees : reportsTo (An employee reports to zero or one employee)
+item ||--o{ category : categoryId (An item belongs to one category, and a category can have zero or many items)
+orderitem }o--|| item : itemId (An order item relates to one item, and an item can be in zero or many order items)
+orderitem }o--|| shoppingorder : shoppingOrderId (An order item relates to one shopping order, and a shopping order can have zero or many order items)

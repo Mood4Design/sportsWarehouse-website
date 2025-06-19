@@ -52,93 +52,12 @@ The `styles` directory contains the `styles_improved.css` file, which provides t
 
 ## Architecture Diagram
 
-```mermaid
-graph LR
-    subgraph Website
-        index.php --> templates/_indexPage.html.php
-        home.php --> templates/_indexPage.html.php
-        category.php --> templates/_products.html.php
-        product.php --> templates/_productPage.html.php
-        templates/_indexPage.html.php --> templates/_layout.html.php
-        templates/_products.html.php --> templates/_layout.html.php
-        templates/_productPage.html.php --> templates/_layout.html.php
-        templates/_error.html.php --> templates/_layout.html.php
-        index.php --> includes/common.php
-        home.php --> includes/common.php
-        category.php --> includes/common.php
-        product.php --> includes/common.php
-        includes/common.php --> includes/database.php
-        includes/common.php --> includes/secrets.php
-        includes/database.php --> classes/DBAccess.php
-    end
-    subgraph Database
-        classes/DBAccess.php --> DB
-    end
+![alt text](<Editor _ Mermaid Chart-2025-06-19-065505.png>)
 
-    ---
-config:
-  theme: neo
----
-erDiagram
-    category {
-        int categoryId PK
-        varchar(50) categoryName
-    }
-    employees {
-        int employeeID PK
-        varchar(20) lastName
-        varchar(10) firstName
-        varchar(30) title
-        varchar(25) titleOfCourtesy
-        datetime birthDate
-        datetime hireDate
-        varchar(60) address
-        varchar(15) city
-        varchar(15) region
-        varchar(10) postalCode
-        varchar(15) country
-        varchar(24) homePhone
-        varchar(4) extension
-        mediumtext notes
-        int reportsTo FK
-        varchar(255) photoPath
-        float salary
-    }
-    item {
-        int itemId PK
-        varchar(150) itemName
-        varchar(250) photo
-        decimal price
-        decimal salePrice
-        varchar(2000) description
-        tinyint(1) featured
-        int categoryId FK
-    }
-    orderitem {
-        int itemId
-        int shoppingOrderId
-        int quantity
-        decimal price
-    }
-    shoppingorder {
-        int shoppingOrderId PK
-        datetime orderDate
-        varchar(50) firstName
-        varchar(50) lastName
-        varchar(200) address
-        varchar(20) contactNumber
-        varchar(255) email
-        varchar(20) creditCardNumber
-        varchar(10) expiryDate
-        varchar(50) nameOnCard
-        varchar(3) csv
-    }
-    user {
-        int userId PK
-        varchar(50) userName
-        varchar(255) password
-    }
-    employees ||--|| employees : reportsTo
-    item ||--|| category : categoryId
-    orderitem ||--o{ item : itemId
-    orderitem }o--|| shoppingorder : shoppingOrderId
+## User Diagram
+
+![alt text](<Editor _ Mermaid Chart-2025-06-19-064420.png>)
+
+
+## Database Diagram 
+![alt text](<Editor _ Mermaid Chart-2025-06-19-042826.png>)
