@@ -52,12 +52,12 @@ The `styles` directory contains the `styles_improved.css` file, which provides t
 
 ## Architecture Diagram
 
-![alt text](<Editor _ Mermaid Chart-2025-06-19-065505.png>)
+![alt text](<assets/Editor _ Mermaid Chart-2025-06-19-065505.png>)
 
 ## User Diagram
 
-![alt text](<Editor _ Mermaid Chart-2025-06-19-064420.png>)
+![alt text](<assets/Editor _ Mermaid Chart-2025-06-19-064420.png>)
 
 
 ## Database Diagram 
-![alt text](<Editor _ Mermaid Chart-2025-06-19-042826.png>)
+![alt text](<assets/Editor _ Mermaid Chart-2025-06-19-042826.png>)
