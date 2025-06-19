@@ -61,3 +61,7 @@ The `styles` directory contains the `styles_improved.css` file, which provides t
 
 ## Database Diagram 
 ![alt text](<assets/Editor _ Mermaid Chart-2025-06-19-054541.png>)
+
+* 	item ||--o{ category : categoryId (An item belongs to one category, and a category can have zero or many items)
+* 	orderitem }o--|| item : itemId (An order item relates to one item, and an item can be in zero or many order items)
+* 	orderitem }o--|| shoppingorder : shoppingOrderId (An order item relates to one shopping order, and a shopping order can have zero or many order items
