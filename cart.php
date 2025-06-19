@@ -105,10 +105,9 @@ if(isset($_POST["remove"]) || isset($_POST["action"])) {
   $item = new Item();
   $productRows = $item->getItems();
 
-  if (!isset($_GET['ajax']) || $_GET['ajax'] != 'true') {
-    //display items
-    include "templates/_displayItems.html.php";
-  }
+  //display items
+  include "templates/_displayItems.html.php";
+  
 
   //read shopping cart from session
   if(isset($_SESSION["cart"])) {
@@ -116,15 +115,10 @@ if(isset($_POST["remove"]) || isset($_POST["action"])) {
   } else {
       $cart = new ShoppingCart();
   }
+// Include the page-specific template
+include_once "templates/_cartPage.html.php";
 
-  if (isset($_GET['ajax']) && $_GET['ajax'] == 'true') {
-    // Include the page-specific template
-    include_once "templates/_cartPage.html.php";
-    exit();
-  } else {
-    // Include the page-specific template
-    include_once "templates/_cartPage.html.php";
-  }
+
 
   // Stop output buffering - store output into the $content variable
   $content = ob_get_clean();
