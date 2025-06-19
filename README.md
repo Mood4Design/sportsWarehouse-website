@@ -74,3 +74,48 @@ graph LR
     subgraph Database
         classes/DBAccess.php --> DB
     end
+
+    erDiagram
+    categories ||--o{ items : has
+    shopping_carts ||--o{ cart_items : contains
+    items }o--|| categories : is_in
+    cart_items }o--|| items : is_part_of
+    users ||--o{ shopping_carts : owns
+
+    categories {
+        int categoryId PK
+        string categoryName
+        string description
+    }
+    items {
+        int itemId PK
+        int categoryId FK
+        string itemName
+        string description
+        decimal price
+        string image
+    }
+    employees {
+        int employeeId PK
+        string firstName
+        string lastName
+        string email
+        string phone
+    }
+    users {
+        int userId PK
+        string username
+        string password
+        string email
+    }
+    shopping_carts {
+        int cartId PK
+        int userId FK
+        datetime createdDate
+    }
+    cart_items {
+        int cartItemId PK
+        int cartId FK
+        int itemId FK
+        int quantity
+    }
