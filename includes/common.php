@@ -23,11 +23,11 @@
   // Load Composer's autoloader (created by Composer, not included with PHPMailer)
   require_once ROOT_DIR . "vendor/autoload.php";
 
-  // Database connection (create DBAccess instance in the $db variable)
-  require_once INCLUDES_DIR . "database.php";
-
   // Include "secrets" that are not tracked by Git
   require_once INCLUDES_DIR . "secrets.php";
+
+  // Database connection (create DBAccess instance in the $db variable)
+  require_once INCLUDES_DIR . "database.php";
 
   // Open the database connection
   $db->connect();

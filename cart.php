@@ -20,7 +20,8 @@ if(isset($_POST["buy"])) {
         try {
           $item->getItem($itemId);
           //create a new cart item so it can be added to the shopping cart
-          $cartItem = new CartItem($item->getItemName(), $qty, $item->getPrice(), $itemId);
+          $price = ($item->getSalePrice() > 0) ? $item->getSalePrice() : $item->getPrice();
+          $cartItem = new CartItem($item->getItemName(), $qty, $price, $itemId);
 
           //add item to shopping cart
           $cart->addItem($cartItem);

@@ -112,7 +112,7 @@ class Item
    */
   public function getSalePrice(): float
   {
-    return $this->_salePrice;
+    return $this->_salePrice ?? 0.0;
   }
 
   /**
