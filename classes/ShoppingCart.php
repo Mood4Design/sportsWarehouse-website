@@ -69,6 +69,22 @@ class ShoppingCart
   }
 
   /**
+   * Get the total quantity of items in the cart
+   *
+   * @return integer The total quantity of items
+   */
+  public function getTotalQuantity(): int
+  {
+    $totalQuantity = 0;
+
+    foreach ($this->_cartItems as $item) {
+      $totalQuantity += $item->getQuantity();
+    }
+
+    return $totalQuantity;
+  }
+
+  /**
    * Add an item to the cart. If the item already exists, the quantity will be updated.
    *
    * @param CartItem $cartItem The cart item with all details to add
