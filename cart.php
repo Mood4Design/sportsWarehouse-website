@@ -47,28 +47,31 @@ if(isset($_POST["buy"])) {
 }
 
 //remove item from shopping cart
-if(isset($_POST["remove"]))
-    {
-      //check product id was supplied and cart exists in session
-      if(!empty($_POST["itemId"]) && isset($_SESSION["cart"]))
-          {
-              $itemId = $_POST["itemId"];
+if(isset($_POST["remove"])) {
+  if($_POST["remove"] == "Empty cart") {
+    // Clear the cart
+    unset($_SESSION["cart"]);
+    header("Location: cart.php"); // Redirect to cart page
+    exit();
+  }else {
+    //check product id was supplied and cart exists in session
+    if(!empty($_POST["itemId"]) && isset($_SESSION["cart"])) {
+      $itemId = $_POST["itemId"];
 
-              //the only value that is important is the product Id
-              $item = new CartItem("", 0, 0, $itemId);
-              //read shopping cart from session
-              $cart = $_SESSION["cart"];
-              //remove item from shopping cart
-              $cart->removeItem($item);
-              //save shopping cart back into session
-              $_SESSION["cart"] = $cart;
-          }
-          else
-          {
-              //display error message
-              $errorMessage = "Please select a product to remove.";
-              include "templates/_error.html.php";
-          }
+      //the only value that is important is the product Id
+      $item = new CartItem("", 0, 0, $itemId);
+      //read shopping cart from session
+      $cart = $_SESSION["cart"];
+      //remove item from shopping cart
+      $cart->removeItem($item);
+      //save shopping cart back into session
+      $_SESSION["cart"] = $cart;
+    } else {
+      //display error message
+      $errorMessage = "Please select a product to remove.";
+      include "templates/_error.html.php";
+    }
+  }
 }
 
 //create a new cart item so it can be removed from the shopping cart
