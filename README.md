@@ -60,4 +60,4 @@ The `styles` directory contains the `styles_improved.css` file, which provides t
 
 
 ## Database Diagram 
-![alt text](<assets/Editor _ Mermaid Chart-2025-06-19-042826.png>)
+![alt text](<assets/Editor _ Mermaid Chart-2025-06-19-054541.png>)
