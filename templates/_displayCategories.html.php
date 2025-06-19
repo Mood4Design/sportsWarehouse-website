@@ -2,10 +2,10 @@
    <h3> Edit  category</h3> 
     <table>
         <tr>
-            <div>
-            <th class="edit">Category Id</th>
-            <th class="edit">Category Name</th>
-            <th>
+            <div class="edit">
+            <th style="padding-right: 20px">Category ID</th>
+            <th style="padding-right: 20px">Category Name</th>
+            <th style="padding-right: 20px">
              
                 <select onchange="window.location.href=this.value;">
                     <option value="">Edit</option>
