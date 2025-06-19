@@ -47,12 +47,12 @@ if(isset($_POST["buy"])) {
 }
 
 //remove item from shopping cart
-if(isset($_POST["remove"])) {
-  if($_POST["remove"] == "Empty cart") {
+if(isset($_POST["remove"]) || isset($_POST["action"])) {
+  if((isset($_POST["remove"]) && $_POST["remove"] == "Empty cart") || (isset($_POST["action"]) && $_POST["action"] == "empty_cart")) {
     // Clear the cart
     unset($_SESSION["cart"]);
-    header("Location: cart.php"); // Redirect to cart page
-    exit();
+    //header("Location: cart.php"); // Redirect to cart page
+    //exit();
   }else {
     //check product id was supplied and cart exists in session
     if(!empty($_POST["itemId"]) && isset($_SESSION["cart"])) {
@@ -105,11 +105,26 @@ if(isset($_POST["remove"])) {
   $item = new Item();
   $productRows = $item->getItems();
 
-  //display items
-  include "templates/_displayItems.html.php";
+  if (!isset($_GET['ajax']) || $_GET['ajax'] != 'true') {
+    //display items
+    include "templates/_displayItems.html.php";
+  }
 
-  // Include the page-specific template
-  include_once "templates/_cartPage.html.php";
+  //read shopping cart from session
+  if(isset($_SESSION["cart"])) {
+      $cart = $_SESSION["cart"];
+  } else {
+      $cart = new ShoppingCart();
+  }
+
+  if (isset($_GET['ajax']) && $_GET['ajax'] == 'true') {
+    // Include the page-specific template
+    include_once "templates/_cartPage.html.php";
+    exit();
+  } else {
+    // Include the page-specific template
+    include_once "templates/_cartPage.html.php";
+  }
 
   // Stop output buffering - store output into the $content variable
   $content = ob_get_clean();
