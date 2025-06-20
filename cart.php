@@ -46,6 +46,10 @@ if(isset($_POST["buy"])) {
     }
 }
 
+// Get the return URL
+$returnUrl = isset($_POST["return_url"]) ? $_POST["return_url"] : "cart.php";
+
+
 //remove item from shopping cart
 if(isset($_POST["remove"]) || isset($_POST["action"])) {
   if((isset($_POST["remove"]) && $_POST["remove"] == "Empty cart") || (isset($_POST["action"]) && $_POST["action"] == "empty_cart")) {
@@ -72,12 +76,20 @@ if(isset($_POST["remove"]) || isset($_POST["action"])) {
       include "templates/_error.html.php";
     }
   }
+  // Redirect to the return URL, unless it's the cart page itself
+   if ($returnUrl != "cart.php" && $returnUrl != "templates/_shoppingCartPage.html.php") {
+ 
+    header("Location: " . $returnUrl);
+    exit();
+  }
 }
 
 //create a new cart item so it can be removed from the shopping cart
 
+
+
   /*
-    TESTING: Add items to the shopping cart 
+    TESTING: Add items to the shopping cart
    */
 
   // // Create testing CartItems
