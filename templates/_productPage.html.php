@@ -29,6 +29,7 @@
         <p><label for="qty<?=$itemId?>">quantity:</label>
         <input class="qty" style="width: 100px; text-align: center;" type="number" id="qty<?=$itemId?>" name="qty" value="1"></p>
         <p><input class="buy" type="submit" name="buy" value="Buy"></p>
+        <input type="hidden" value="<?= $item["itemId"] ?>" name="itemId">
         <p><a href="cart.php" class="back">Back to Product List</a></p>
         <p><a href="shoppingCart.php" class="cart">Back to Cart</a></p>
     </form>
