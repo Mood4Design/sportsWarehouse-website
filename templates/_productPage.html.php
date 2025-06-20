@@ -31,6 +31,8 @@
 
         <p><input class="buy" type="submit" name="buy" value="Buy"></p>
         <input type="hidden" value="<?=$itemId?>" name="itemId">
+        <p><input class="back" type="submit" name="back" value="Go Back"></p>
+        <input type="hidden" value="<?=$itemId?>" name="itemId">
     </form>
   </div>
 </section>
