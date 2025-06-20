@@ -15,7 +15,7 @@
   // User action items
   $userActionLinks = [
     "login.php" => "<i class='fas fa-lock'></i> Login",
-    "cart.php" => "<i class='fas fa-shopping-cart'></i> Cart",
+    "shoppingCart.php" => "<i class='fas fa-shopping-cart'></i> Cart",
     "indexAdmin.php" => "<i class='fas fa-user-shield'></i> Admin",
     "items.php" => "<span class='item-count'></span> Items (" . $_SESSION["cart"]->getTotalQuantity() . ")",
   ];
@@ -30,7 +30,7 @@
       // Check if current page
       $cssClass = $linkHref === $currentPage ? "active" : "";
     ?>
-    <div class="<?= $linkHref === 'login.php' ? 'login-action' : ($linkHref === 'cart.php' ? 'cart' : ($linkHref === 'items.php' ? 'item-count' : '')) ?> <?= $cssClass ?>">
+    <div class="<?= $linkHref === 'login.php' ? 'login-action' : ($linkHref === 'shoppingCart.php' ? 'cart' : ($linkHref === 'shoppingCart.php' ? 'item-count' : '')) ?> <?= $cssClass ?>">
       <a href="<?= $linkHref ?>"><?= $linkText ?></a>
     </div>
   <?php endforeach ?>

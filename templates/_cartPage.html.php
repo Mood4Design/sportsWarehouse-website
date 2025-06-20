@@ -2,7 +2,7 @@
 <div class="container">
  
 
-    <h3>Shopping cart</h3>
+    <h3>Shopping list</h3>
         <!-- <h2>Shopping cart</h2> -->
 
           <?php if ($cart->count() === 0): ?>
@@ -30,9 +30,12 @@
                             -->
                             <tr>
                                   <td><a href="product.php?id=<?= $item->getItemId() ?>"><?= $item->getItemName() ?></a></td>
+
+                            
                                   <?php
                                       $itemObj = new Item();
                                       $itemObj->getItem($item->getItemId());
+
                                       $photoPath = "image/" . $itemObj->getPhoto();
                                     ?>
                                 <td><img src="<?= $photoPath ?>" alt="<?= $item->getItemName() ?>" width="50"></td>
@@ -51,10 +54,6 @@
                 </table>
 
                 <div class="edit">
-                  <h2>Total price:$<?= $cart->calculateTotal() ?></h2>
-                  <h4><a href="checkout.php">Checkout</a></h4>
-                  <h4><a href="cart.php">Continue shopping</a></h4>
-
                   <form action="cart.php" method="post">
                     <input type="hidden" name="itemId" value="<?= $item->getItemId() ?>">
                     <input type="submit" name="remove" value="Empty cart">
