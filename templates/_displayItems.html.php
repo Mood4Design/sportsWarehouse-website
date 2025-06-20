@@ -22,7 +22,7 @@
                                             <?php endif; ?>
                                         </p>
                                         <p><label for="qty<?=$itemId?>">quantity:</label>
-                                        <input class="qty" style="width: 50px; text-align: center;" type="number" id="qty<?=$itemId?>" name="qty" value="1">
+                                        <input class="qty" style="width: 80px; text-align: center;" type="number" id="qty<?=$itemId?>" name="qty" value="1">
                                         </p>
                                         <p><input class="buy" type="submit" name="buy" value="Buy"></p>
                                         <input type="hidden" value="<?=$itemId?>" name="itemId">

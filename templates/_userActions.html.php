@@ -1,7 +1,17 @@
 <?php
+  // Include necessary classes
+ require_once "includes/common.php";
 
-?>
-<?php
+  if(!isset($_SESSION))
+  {
+    session_start();
+  }
+
+  if (!isset($_SESSION["cart"])) {
+    $_SESSION["cart"] = new ShoppingCart();
+  }
+
+
   // User action items
   $userActionLinks = [
     "login.php" => "<i class='fas fa-lock'></i> Login",

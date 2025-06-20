@@ -3,12 +3,6 @@
   // References
  // require_once "classes/Auth.php";
 
-  if(!isset($_SESSION))
-    {
-      session_start();
-    }
-
-
   // Check if user is already logged in, redirect to protected/success page
   if(Auth::isLoggedIn()){
     // Redirect the user to the success/protected page (skip login)
