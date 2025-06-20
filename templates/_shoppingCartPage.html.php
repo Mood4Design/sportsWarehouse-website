@@ -42,7 +42,7 @@
                                 <td><?= sprintf('$%1.2f', $item->getPrice() ?? "--") ?></td>
                                 <td><?= $item->getQuantity() ?></td>
                                 <td>
-                                  <form action="cart.php" method="post">
+                                  <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
                                     <input type="hidden" name="itemId" value="<?= $item->getItemId() ?>">
                                     <input type="submit" name="remove" value="Remove">
                                   </form>

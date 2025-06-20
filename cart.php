@@ -76,8 +76,9 @@ if(isset($_POST["remove"]) || isset($_POST["action"])) {
       include "templates/_error.html.php";
     }
   }
+  
   // Redirect to the return URL, unless it's the cart page itself
-   if ($returnUrl != "cart.php" && $returnUrl != "templates/_shoppingCartPage.html.php") {
+  if ($returnUrl != "cart.php" && $returnUrl != "templates/_shoppingCartPage.html.php") {
  
     header("Location: " . $returnUrl);
     exit();
