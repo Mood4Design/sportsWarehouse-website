@@ -18,7 +18,7 @@
   $sql = <<<SQL
     SELECT	itemId, itemName, categoryId, price, salePrice, description, photo
     FROM	  item
-    WHERE   price < 20
+    WHERE   price > 20
     LIMIT   0, 6
   SQL;
 
@@ -28,8 +28,8 @@
   // Bind values (if needed)
   // $stmt->bindValue(":categoryId", $categoryId, PDO::PARAM_INT);
 
-  // Execute query (get the list of products under $20)
-  $productsUnder20 = $db->executeSQL($stmt);
+  // Execute query (get the list of products over $20)
+  $productsOver20 = $db->executeSQL($stmt);
 
   /*
    * Search for products > $50
@@ -39,7 +39,7 @@
   $sql = <<<SQL
     SELECT	itemId, itemName, categoryId, price, salePrice, description, photo
     FROM	  item
-    WHERE   price < 50
+    WHERE   price > 50
     LIMIT   0, 6
   SQL;
 
@@ -47,7 +47,7 @@
   $stmt = $db->prepareStatement($sql);
 
   // Execute query (get the list of products over $50)
-  $productsUnder50 = $db->executeSQL($stmt);
+  $productsOver50 = $db->executeSQL($stmt);
 
   // Include the page-specific template
   include_once "templates/_indexPage.html.php";

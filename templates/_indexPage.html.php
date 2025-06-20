@@ -3,7 +3,7 @@
     <h3>Featured products</h3>
                    
         <?php
-            $items = $productsUnder50;
+            $items =  $productsOver20;
             include "_products.html.php";
         ?>
                   
