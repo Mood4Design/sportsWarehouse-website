@@ -9,7 +9,7 @@
                     $price = isset($row["salePrice"]) && $row["salePrice"] > 0 ? $row["salePrice"] : $row["price"];?>
                 
                             <article class="product">
-                                <form class="product__link" action="cart.php" method="post">
+                                <form class="product__link" action="product.php" method="post">
                                         <img src="<?= $photoPath ?>" alt="">
                                         <p class="info"><?= $productName ?></p>
                                         <p class="current-price">

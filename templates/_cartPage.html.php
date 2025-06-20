@@ -1,3 +1,4 @@
+<?php require_once "includes/common.php"; ?>
 <div class="container">
  
 
@@ -28,8 +29,8 @@
                             </tr>
                             -->
                             <tr>
-                                <td><?= $item->getItemName() ?></td>
-                                    <?php 
+                                  <td><a href="product.php?id=<?= $item->getItemId() ?>"><?= $item->getItemName() ?></a></td>
+                                  <?php
                                       $itemObj = new Item();
                                       $itemObj->getItem($item->getItemId());
                                       $photoPath = "image/" . $itemObj->getPhoto();
