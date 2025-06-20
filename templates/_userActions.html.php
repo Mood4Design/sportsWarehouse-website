@@ -17,7 +17,7 @@
     "login.php" => "<i class='fas fa-lock'></i> Login",
     "shoppingCart.php" => "<i class='fas fa-shopping-cart'></i> Cart",
     "indexAdmin.php" => "<i class='fas fa-user-shield'></i> Admin",
-    "items.php" => "<span class='item-count'></span> Items (" . $_SESSION["cart"]->getTotalQuantity() . ")",
+    "cart.php" => "<span class='item-count'></span> Items (" . $_SESSION["cart"]->getTotalQuantity() . ")",
   ];
 
   // Get the currently-loaded PHP page/script
@@ -30,7 +30,7 @@
       // Check if current page
       $cssClass = $linkHref === $currentPage ? "active" : "";
     ?>
-    <div class="<?= $linkHref === 'login.php' ? 'login-action' : ($linkHref === 'shoppingCart.php' ? 'cart' : ($linkHref === 'shoppingCart.php' ? 'item-count' : '')) ?> <?= $cssClass ?>">
+    <div class="<?= $linkHref === 'login.php' ? 'login-action' : ($linkHref === 'shoppingCart.php' ? 'cart' : ($linkHref === 'indexAdmin.php' ? 'admin' : ($linkHref === 'cart.php' ? 'item-count' : ''))) ?> <?= $cssClass ?>">
       <a href="<?= $linkHref ?>"><?= $linkText ?></a>
     </div>
   <?php endforeach ?>
