@@ -13,6 +13,6 @@
                 <li><a href="createUser.php">Create user</a> (do NOT have this accessible on a production website!)</li>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="logout.php">Logout</a></li>
-                <li><a href="protected.php">Protected page</a> (does NOT allow access to unauthorised users)</li>
+                <li><a href="protected.php">Secret menu</a> (does NOT allow access to unauthorised users)</li>
             </ul>
 </div>

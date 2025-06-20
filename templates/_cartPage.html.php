@@ -58,7 +58,11 @@
                     <input type="hidden" name="itemId" value="<?= $item->getItemId() ?>">
                     <input type="submit" name="remove" value="Empty cart">
                   </form>
+                  
+                    <form action="shoppingCart.php" method="get">
+                      <input type="submit" name="cart" value="Go to cart">
+                    </form>
+                  
                 </div>
-
           <?php endif ?>
 </div>
