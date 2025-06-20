@@ -52,7 +52,7 @@
   $content = ob_get_clean();
 
   // Include layout template
-  include_once TEMPLATES_DIR . "_layoutAdmin.html.php";
+  include_once TEMPLATES_DIR . "_layout.html.php";
 
   /**
    * Set an HTML-safe value of a form field from $_POST data.
