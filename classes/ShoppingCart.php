@@ -191,19 +191,18 @@ $shoppingOrderID = $this->_db->executeNonQuery($stmt, true);
 //loop through shopping cart, insert items
 foreach ($this->_cartItems as $item)
 {
-//set up insert statement
-$sql = <<<SQL
-insert into orderitem(itemId, price, quantity, shoppingOrderID) values(:ItemId, :Price, :Quantity, :ShoppingOrderID)
-SQL;
-//for each item insert a row in OrderItem
-$stmt = $this->_db->prepareStatement($sql);
-$stmt->bindValue(":ItemId" , $item->getItemId(), PDO::PARAM_INT);
-$stmt->bindValue(":Price" , $item->getPrice(), PDO::PARAM_STR);
-$stmt->bindValue(":Quantity" , $item->getQuantity(), PDO::PARAM_INT);
-$stmt->bindValue(":ShoppingOrderID" , $shoppingOrderID, PDO::PARAM_INT);
-// Execute query and return success value (true/false)
-return $this->_db->executeNonQuery($stmt);
-
+    //set up insert statement
+    $sql = <<<SQL
+    insert into orderitem(itemId, price, quantity, shoppingOrderId) values(:ItemId, :Price, :Quantity, :ShoppingOrderId)
+    SQL;
+    //for each item insert a row in OrderItem
+    $stmt = $this->_db->prepareStatement($sql);
+    $stmt->bindValue(":ItemId" , $item->getItemId(), PDO::PARAM_INT);
+    $stmt->bindValue(":Price" , $item->getPrice(), PDO::PARAM_STR);
+    $stmt->bindValue(":Quantity" , $item->getQuantity(), PDO::PARAM_INT);
+    $stmt->bindValue(":ShoppingOrderId" , $shoppingOrderID, PDO::PARAM_INT);
+    // Execute query
+    $this->_db->executeNonQuery($stmt);
 }
 return $shoppingOrderID;
 }
