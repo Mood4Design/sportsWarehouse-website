@@ -274,14 +274,22 @@ class Category
       // Open the database connection
       $this->_db->connect();
 
-      // Define query, prepare statement, bind parameters
+      // Define query to delete items associated with the category
+      $sqlItems = <<<SQL
+        DELETE FROM item
+        WHERE categoryId = :categoryId
+      SQL;
+      $stmtItems = $this->_db->prepareStatement($sqlItems);
+      $stmtItems->bindValue(":categoryId", $id, PDO::PARAM_INT);
+      $this->_db->executeNonQuery($stmtItems);
+
+      // Define query to delete the category
       $sql = <<<SQL
-        DELETE
-        FROM 	  category
-        WHERE 	categoryId = :categoryId
+        DELETE FROM category
+        WHERE categoryId = :categoryId
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
-      $stmt->bindValue(":getCategoryId", $id, PDO::PARAM_INT);
+      $stmt->bindValue(":categoryId", $id, PDO::PARAM_INT);
 
       // Execute query and return success value (true/false)
       return $this->_db->executeNonQuery($stmt);
