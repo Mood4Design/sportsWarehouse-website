@@ -357,7 +357,7 @@ class Item
       $sql = <<<SQL
         UPDATE 	item
         SET 	  itemName = :itemName, photo = :photo, price = :price, salePrice = :salePrice, description = :description, categoryId = :categoryId
-        WHERE 	itemId = :itemId
+        WHERE   itemId = :itemId
       SQL;
       $stmt = $this->_db->prepareStatement($sql);
       $stmt->bindValue(":itemId", $id, PDO::PARAM_INT);
