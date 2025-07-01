@@ -2,11 +2,17 @@
 <h3>Create admin user</h3>
 
 <p>Create a new admin user in the database - You need a authorised username and password to login first. The password will be stored as a hash (not plaintext).</p>
+<?php if (isset($errorMessage)) : ?>
+  <div class="error-message"><?= htmlspecialchars($errorMessage) ?></div>
+<?php endif; ?>
 
-<p><strong>NOTE:</strong> do NOT leave this accessible on a production website!</p>
+<?php if (isset($successMessage)) : ?>
+  <div class="success-message"><?= htmlspecialchars($successMessage) ?></div>
+<?php endif; ?>
 
-<?php include "_error.html.php" ?>
-<?php include "_success.html.php" ?>
+<?php
+
+?>
 
 <form action="createUser.php" method="post" novalidate>
   <fieldset>
