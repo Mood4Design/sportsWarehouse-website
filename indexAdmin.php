@@ -11,7 +11,13 @@
   ob_start();
 
   // Include the page-specific template
+  $item = new Item();
+  $productRows = $item->getItems();
+  include_once "./templates/_displayItems.html.php";
+
+  // Include the page-specific template
   include_once "./templates/_homePage.html.php";
+
 
   // Stop output buffering - store output into our $content variable
   $content = ob_get_clean();
