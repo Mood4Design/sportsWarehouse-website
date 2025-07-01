@@ -1,9 +1,21 @@
+<?php
+?>
 
 <div class="container">
     <h3>Checkout</h3>
         <form method="post" action="thanks.php" id="checkout">
                 <fieldset>
                     <legend>Delivery Details</legend>
+                        <?php
+                            if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+                                echo "<div class='error'>";
+                                foreach ($_SESSION['errors'] as $error) {
+                                    echo "<p>" . htmlspecialchars($error) . "</p>";
+                                }
+                                echo "</div>";
+                                unset($_SESSION['errors']); // Clear errors after displaying them
+                            }
+                        ?>
                         <p>
                         <label for="firstName">First Name:</label>
                         <input type="text" id="firstName" name="firstName">
@@ -23,7 +35,7 @@
                         <p>
                         <label for="email">Email:</label>
                         <input type="text" id="email" name="email">
-                       </p>
+                        </p>
                 </fieldset>
 
                 <fieldset>
@@ -48,3 +60,7 @@
                   </fieldset>
           </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="scripts/registerPageValidation.js"></script>
