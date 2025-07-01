@@ -154,14 +154,7 @@ try
 }
 
 } else {
-  // Get the item ID from the request (e.g., from a query parameter)
-  $itemIdToUpdate = $_GET["id"] ?? 0;
-
-  // Create a new Item object and retrieve the item from the database
-  $item = new Item();
-  $item->getItem($itemIdToUpdate);
-
-  // Display the form to update an existing item, passing the item data
+  // Display the form to update an existing item
   include_once TEMPLATES_DIR . "_updateItemPage.html.php";
 }
 
