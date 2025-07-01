@@ -19,8 +19,8 @@
                 <li><a href="updateCategory.php">Update Category</a></li>
                 <li><a href="deleteCategory.php">Delete Category</a></li>
                 <li><a href="addItem.php">Add Item</a></li>
-                <li><a href="updateItem.php">Update Item</a></li>
-                <li><a href="deleteItem.php">Delete Item</a></li>
+                <li><a href="selectItem.php">Update Item</a></li>
+                <li><a href="selectItemToDelete.php">Delete Item</a></li>
                 <li><a href="login.php">Login</a> (should be redirected back here because you're already logged in)</li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
