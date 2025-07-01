@@ -6,9 +6,17 @@
 
             <p>Logging in will give you access to the <a href="protected.php">protected.php</a> page with super-secret content!</p>
 
+            <?php if (isset($errorMessage)) : ?>
+                <div class="error-message">
+                    <p><?= $errorMessage ?></p>
+                </div>
+            <?php endif; ?>
 
-            <?php include "_error.html.php" ?>
-            <?php include "_success.html.php" ?>
+            <?php if (isset($successMessage)) : ?>
+                <div class="success-message">
+                    <p><?= $successMessage ?></p>
+                </div>
+            <?php endif; ?>
 
                   <form action="login.php" method="post" novalidate>
                         <fieldset>
