@@ -77,7 +77,6 @@ require_once "includes/common.php";
     include_once TEMPLATES_DIR . "_updateCategoryPage.html.php";
   } else {
     // Display the form to select a category to update
-    echo "<p>Please select a category to update from the list below.</p>";
     include_once TEMPLATES_DIR . "_updateCategoryPage.html.php";
   }
 }
