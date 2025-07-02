@@ -38,8 +38,8 @@ require_once "includes/common.php";
     } catch (Exception $ex) {
 
   // "Handle" exception
-  echo "<p>Catastrophic error: {$ex->getMessage()}</p>";
-  
+  $errorMessage = $ex->getMessage();
+  include_once TEMPLATES_DIR . "_error.html.php";
 
 }
 

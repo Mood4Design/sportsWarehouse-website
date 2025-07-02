@@ -9,7 +9,7 @@
                     <fieldset>
                         <legend><strong>Delete Category</strong></legend>
                         <label for="categoryId">Category ID:</label>
-                        <input type="text" id="categoryId" name="categoryId" required><br><br>
+                        <input type="text" id="categoryId" name="categoryId" value="<?php echo isset($_GET['categoryId']) ? $_GET['categoryId'] : ''; ?>" required readonly><br><br>
                         <button type="submit" value="Delete category" name="submitDeleteCategory">Delete category</button>
                     </fieldset>
                 </form>

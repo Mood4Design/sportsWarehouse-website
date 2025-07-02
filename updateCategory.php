@@ -66,11 +66,21 @@ require_once "includes/common.php";
   $category = new Category();
   $categories = $category->getCategories();
   include TEMPLATES_DIR . "_displayCategories.html.php";
-  
-  // Display the form to add a new category
-  include_once TEMPLATES_DIR . "_updateCategoryPage.html.php";
-}
 
+  // Check if a category ID is provided in the query string
+  if (isset($_GET['categoryId'])) {
+    $categoryIdToUpdate = $_GET['categoryId'];
+    $categoryToUpdate = new Category();
+    $categoryToUpdate->getCategory($categoryIdToUpdate);
+
+    // Include the form to update an existing category, passing the category data
+    include_once TEMPLATES_DIR . "_updateCategoryPage.html.php";
+  } else {
+    // Display the form to select a category to update
+    echo "<p>Please select a category to update from the list below.</p>";
+    include_once TEMPLATES_DIR . "_updateCategoryPage.html.php";
+  }
+}
   // Stop output buffering - store output into the $content variable
   $content = ob_get_clean();
 

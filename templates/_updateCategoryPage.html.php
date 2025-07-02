@@ -9,9 +9,9 @@
                     <fieldset>
                         <legend><b>Update Category</b></legend>
                         <label for="categoryId">Category ID:</label>
-                        <input type="text" id="categoryId" name="categoryId" required><br><br>
+                        <input type="text" id="categoryId" name="categoryId" value="<?php echo isset($_GET['categoryId']) && isset($categoryToUpdate) ? $categoryToUpdate->getCategoryId() : ''; ?>" required <?php echo isset($_GET['categoryId']) && isset($categoryToUpdate) ? 'readonly' : ''; ?>><br><br>
                         <label for="categoryName">Category Name:</label>
-                        <input type="text" id="categoryName" name="categoryName" required><br><br>
+                        <input type="text" id="categoryName" name="categoryName" value="<?php echo isset($_GET['categoryId']) && isset($categoryToUpdate) ? $categoryToUpdate->getCategoryName() : ''; ?>" required><br><br>
                         <button type="submit" value="Update category" name="submitUpdateCategory">Update category</button>
                     </fieldset>
                 </form>

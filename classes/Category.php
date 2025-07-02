@@ -270,9 +270,22 @@ class Category
   public function deleteCategory(int $id): bool
   {
     try {
-      
-      // Open the database connection
-      $this->_db->connect();
+     // Open the database connection
+     $this->_db->connect();
+
+     // Check if there are related products
+     $sqlCheckItems = <<<SQL
+       SELECT COUNT(*)
+       FROM item
+       WHERE categoryId = :categoryId
+     SQL;
+     $stmtCheckItems = $this->_db->prepareStatement($sqlCheckItems);
+     $stmtCheckItems->bindValue(":categoryId", $id, PDO::PARAM_INT);
+     $itemCount = $this->_db->executeSQLReturnOneValue($stmtCheckItems);
+
+     if ($itemCount > 0) {
+       throw new Exception("Cannot delete category because there are $itemCount related products. Delete the products first.");
+     }
 
       // Define query to delete items associated with the category
       $sqlItems = <<<SQL
