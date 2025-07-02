@@ -6,11 +6,6 @@
 
             <p>Logging in will give you access to the <a href="protected.php">protected.php</a> page with super-secret content!</p>
 
-            <?php if (isset($errorMessage)) : ?>
-                <div class="error-message">
-                    <p><?= $errorMessage ?></p>
-                </div>
-            <?php endif; ?>
 
             <?php if (isset($successMessage)) : ?>
                 <div class="success-message">
