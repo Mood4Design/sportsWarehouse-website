@@ -29,10 +29,8 @@ require_once "includes/common.php";
           include_once TEMPLATES_DIR . "_success.html.php";
           session_start();
           $_SESSION['successMessage'] = $successMessage;
-          header("Location: updateCategory.php");
+          header("Location: deleteCategory.php");
           exit();
-          $errorMessage = "Category delete failed: {$categoryIdToDelete}";
-          include_once TEMPLATES_DIR . "_error.html.php";
        }
 
     } catch (Exception $ex) {
