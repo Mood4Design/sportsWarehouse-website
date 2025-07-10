@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2025 at 09:07 PM
+-- Generation Time: Jul 10, 2025 at 05:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,8 +44,9 @@ INSERT INTO `category` (`categoryId`, `categoryName`) VALUES
 (5, 'Balls'),
 (6, 'Equipment'),
 (7, 'Training Gear'),
-(8, 'zoo'),
-(10, 'Jacket');
+(8, 'Dress'),
+(10, 'Jacket'),
+(16, 'Coat');
 
 -- --------------------------------------------------------
 
@@ -120,7 +121,16 @@ INSERT INTO `item` (`itemId`, `itemName`, `photo`, `price`, `salePrice`, `descri
 (5, 'Asics Gel Lethal Tigreor 8 IT Men\'s', 'footyBoots.jpg', 160.00, NULL, 'The GEL-Lethal Tigreor 8 IT is an advanced lightweight football boot designed for high performance and speed. This boot features HG10mm technology.', 1, 1),
 (6, 'Asics GEL Kayano 27 Kids Running Shoes', 'runningShoes.jpg', 179.99, NULL, 'Asics refine running for the next generation of young athletes with the Asics GEL Kayano 27. The exceptional support and comfort of the Kayano return in a lighter even more comfortable runner thanks to the two-piece, Flightfoam Propel midsole. ', 0, 1),
 (7, 'Adidas must have stripes tee', 'blackTop.jpg', 34.99, NULL, 'Built for busy training schedules, the adidas Boys Aeroready 3-Stripes Tee is a must have for budding young athletes.', 0, 4),
-(8, 'Nike girls Futura Air tee', 'whitePinkTop.jpg', 29.99, 24.99, 'Your child will be motivated to perform her best at training in the Nike Girls Futura Air Tee. The comfortable, non-restrictive crew neckline offers durability, while the iconic Nike Air logo is featured across the front and on the sleeve to highlight her sporty vibe.', 0, 4);
+(8, 'Nike girls Futura Air tee', 'whitePinkTop.jpg', 29.99, 24.99, 'Your child will be motivated to perform her best at training in the Nike Girls Futura Air Tee. The comfortable, non-restrictive crew neckline offers durability, while the iconic Nike Air logo is featured across the front and on the sleeve to highlight her sporty vibe.', 0, 4),
+(11, 'Adidas 3 stripes flare pants', 'tracksuit.jpg', 69.99, 55.99, 'Kick it old school this winter when you step out in the adidas Women\\\'s Tricot 3-Stripes Flare Pants. Ideal for post-gym wear, the stretchy tricot fabric allows you to move with ease as you recover from your big session.', 0, 3),
+(12, 'White lace top', 'product3.jpg', 234.00, 210.00, 'White lace top, woven, has a round neck, short sleeves, has knitted lining attached', 0, 8),
+(15, 'Red Dress Coat', 'product1_2.jpg', 350.00, 300.00, 'Red lace top, woven, has a round neck, short sleeves, has knitted lining attached', 0, 10),
+(18, 'Red Dress Coat', 'product2_2.jpg', 350.00, 300.00, 'Red lace top, woven, has a round neck, short sleeves, has knitted lining attached', 0, 10),
+(19, 'Blue Skirt', 'product4_2.jpg', 456.00, 368.00, 'Blee lace skirt, woven, has a round neck, short sleeves, has knitted lining attached', 0, 10),
+(21, 'Ruche Dress', 'product3_2.jpg', 399.00, 299.00, 'is a fittted style.\r\nThis dress features a ruched bodies\r\nThis is a Limited Edition item.\r\nThis style runs true to size. 100% Silk.', 0, 8),
+(25, 'Red Dress', 'product1.jpg', 265.00, 250.00, 'is a draped style.\r\nThis is a Limited Edition item.\r\nThis style runs true to size. 100% Silk.', 0, 16),
+(26, 'WhiteTop', 'detailsquare3.jpg', 40.00, 25.00, 'This top features a tuck bodice\r\nThis is a Limited Edition item.\r\nThis style runs true to size. 90% Silk. 10% Cotton', 0, 16),
+(28, 'Red Coat', 'basketsquare.jpg', 233.00, 123.00, 'good one', 0, 16);
 
 -- --------------------------------------------------------
 
@@ -140,9 +150,14 @@ CREATE TABLE `orderitem` (
 --
 
 INSERT INTO `orderitem` (`itemId`, `shoppingOrderId`, `quantity`, `price`) VALUES
-(1, 2, 1, 46.00),
-(7, 6, 1, 34.99),
-(7, 9, 1, 34.99);
+(2, 1, 1, 70.00),
+(3, 1, 2, 15.00),
+(3, 3, 1, 15.00),
+(4, 2, 1, 79.95),
+(8, 3, 1, 24.99),
+(12, 3, 1, 210.00),
+(25, 2, 1, 250.00),
+(26, 2, 1, 25.00);
 
 -- --------------------------------------------------------
 
@@ -169,15 +184,9 @@ CREATE TABLE `shoppingorder` (
 --
 
 INSERT INTO `shoppingorder` (`shoppingOrderId`, `orderDate`, `firstName`, `lastName`, `address`, `contactNumber`, `email`, `creditCardNumber`, `expiryDate`, `nameOnCard`, `csv`) VALUES
-(1, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', 'rew'),
-(2, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', ''),
-(3, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', ''),
-(4, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', ''),
-(5, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', ''),
-(6, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69', '', '', '', ''),
-(7, '2025-06-18 00:00:00', 'A', 'Lee', '9 Pawley Street', '0422293668', 'leallan69gmail.com', '', '', '', ''),
-(8, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '12345678903', '20/27', 'Allan', '123'),
-(9, '2025-06-18 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', '');
+(1, '2025-07-01 00:00:00', 'Allan', 'Lee', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '5555555555554444', '12/28', 'Allan Lee', '123'),
+(2, '2025-07-02 00:00:00', 'Allan', '', '9 Pawley Street', '0422293668', 'leallan69@gmail.com', '', '', '', ''),
+(3, '2025-07-02 00:00:00', 'Allan', 'Lee', 'Street', '0422293668', 'leallan69@gmail.com', '5555555555554444', '12/28', 'allan', '123');
 
 -- --------------------------------------------------------
 
@@ -196,7 +205,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userId`, `userName`, `password`) VALUES
-(2, 'Allan', '$2y$10$IHatJC2EZKIzspgmQcfhkuhiyHh7b6sCXoHrE84.xnmHw5.1iVvua');
+(2, 'Allan', '$2y$10$IHatJC2EZKIzspgmQcfhkuhiyHh7b6sCXoHrE84.xnmHw5.1iVvua'),
+(3, 'admin', '$2y$10$BXLfL.V8pfY3VDwroIht5uCDqQWHpuRn9TA6/UcuaGnCs76iM5ufa');
 
 --
 -- Indexes for dumped tables
@@ -253,7 +263,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -265,19 +275,19 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `shoppingorder`
 --
 ALTER TABLE `shoppingorder`
-  MODIFY `shoppingOrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `shoppingOrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
